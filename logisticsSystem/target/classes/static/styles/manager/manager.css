@@ -1,0 +1,205 @@
+/*body*/
+body
+{
+    border: 0;
+    margin: 0;
+    padding: 0;
+    min-width:1000px;   
+}
+
+.mainbody
+{
+    border: none;
+    height:auto;    
+    position: relative;
+    text-align: left;
+    min-width:1000px;
+    width:100%;         
+}
+
+.header
+{
+    font-size: 12px;
+    color: #ffffff;
+    border: none;
+    height: 111px;
+    left: 0px;
+    line-height: 111px;
+    padding: 0px;
+    top: 0px;
+    min-width:1000px;
+    width: 100%;
+    background-image: url(/images/images/manager_header_bg.jpg);
+}
+
+.header a
+{
+    color: #ffffff;
+    text-decoration: none;
+    }
+    
+    .header:hover a
+{
+    color: #ffffff;
+    text-decoration: none;
+    }
+
+.header_logo
+{
+    float: left;
+    padding-left: 150px;
+    height: 111px;
+    width: 229px;
+    background-image: url(/images/images/manager_logo.png);
+    background-repeat: no-repeat;
+    background-position: right;
+}
+
+.header_logInfo
+{
+    float: right;
+    padding-right: 100px;
+}
+
+
+.manager_nav_bg
+{
+    border: none;
+    height: 89px;
+    left: 0px;
+    line-height: 89px;
+    padding: 0px;
+    top: 111px;
+    min-width:1000px;
+    width: 100%;
+    background-image: url(/images/images/manager_nav_bg.png);
+}
+
+.manager_nav
+{
+    padding-left: 120px;
+}
+
+ul#menu
+{
+    position: relative;
+    margin: 0; /*鎺у埗鏂囧瓧楂樺害padding-top:-10px;*/
+    line-height: 55px;
+}
+
+ul#menu li
+{
+    display: inline; /*li鏄剧ず鍚屼竴琛�/
+    list-style: none;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+ul#menu li a
+{
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 17px;
+    padding-bottom: 17px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #5f5845; /* 瀵艰埅榛樿瀛椾綋棰滆壊*/
+}
+
+ul#menu li a:hover /* 榧犳爣璺繃鐨勬牱寮�/
+{
+    /* 榧犳爣璺繃鐨勬牱寮廱ackground-image: url(images/manager_nav_hover.png);*/
+    background-color: #FFFFFF;
+    background-repeat: no-repeat;
+    text-decoration: none;
+    color: #5f5845;
+}
+
+ul#menu li a:active
+{
+    text-decoration: none;
+}
+
+.manager_main
+{
+    border: none;
+    font-size: 12px;
+    min-height:300px;
+    height:100%;
+    left: 0px;
+    padding: 0px;    
+    margin: 0 auto;
+    min-width:1000px;
+    width: 1000px;
+    background-image:url(/images/images/content_bg.jpg) no-repeat left;
+}
+
+.manager_main a
+{
+    text-decoration: none;
+}
+
+#wraper
+{
+    height:100%
+}
+
+.manager_footer
+{
+    background-image: url(/images/images/manager_footer_bg.png);
+    height: 133px;
+    min-width:1000px;
+    width: 100%;
+    font-size: 12px;
+    color: #ffffff;
+    border: none;
+    left: 0px;
+}
+.manager_footer_left
+{
+    padding-top: 20px;
+    float: left;
+    padding-left: 200px;
+}
+
+.manager_footer_right
+{
+    padding-top: 20px;
+    float: right;
+    padding-right: 200px;
+}
+
+.errorBox, .successBox {
+		padding-bottom:10px; width:708px; margin:10px 0; font-size:0.8em;
+		}
+.successBox 
+{
+    background:url(/images/images/bg_successBox.gif) no-repeat bottom;
+}
+.successBoxTop 
+{
+	background:url(/images/images/bg_successBoxTop.gif) no-repeat; height:6px;
+}
+.successIcon 
+{
+	background:url(/images/images/icon_success.gif) no-repeat 10px 10px;
+}
+
+.line{clear:both;height:10px;line-height:0;font-size:0;background:url(/images/images/dot.gif) repeat-x center}
+
+.field-validation-error
+{
+    color: #ff0000;
+}
+
+.input-validation-error
+{
+    border: 1px solid #ff0000;
+    background-color: #ffeeee;
+}
+
+.validation-summary-errors
+{
+    font-weight: bold;
+    color: #ff0000;
+}

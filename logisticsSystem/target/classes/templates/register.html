@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<base href="<%=basePath%>">
+<meta charset="UTF-8">
+<title>物流管理系统</title>
+<link rel="stylesheet" type="text/css" href="../styles/login/bootstrap-social.css"/>
+		<link rel="stylesheet" type="text/css" href="../styles/login/bootstrap-theme.min.css"/>
+		<link rel="stylesheet" type="text/css" href="../styles/login/bootstrap.min.css"/>
+		<link rel="stylesheet" type="text/css" href="../styles/login/font-awesome.min.css"/>
+		<link rel="stylesheet" type="text/css" href="../styles/login/templatemo_style.css"/>
+</head>
+<body class="templatemo-bg-image-1">
+	<div class="container">
+		<div class="col-md-12">			
+			<form class="form-horizontal templatemo-login-form-2" role="form" action="/reg" method="post">
+				<div class="row">
+					<div class="col-md-12">
+						<h1>注册账号</h1>
+					</div>
+				</div>
+				<div class="row">
+					<div class="templatemo-one-signin col-md-6">
+				        <div class="form-group">
+				          <div class="col-md-12">		          	
+				            <label for="username" class="control-label">用户名</label>
+				            <div class="templatemo-input-icon-container">
+				            	<i class="fa fa-user"></i>
+				            	<input type="text" class="form-control" id="username" name="username" placeholder="">
+				            </div>		            		            		            
+				          </div>              
+				        </div>
+				        <div class="form-group">
+				          <div class="col-md-12">
+				            <label for="password" class="control-label">密码</label>
+				            <div class="templatemo-input-icon-container">
+				            	<i class="fa fa-lock"></i>
+				            	<input type="password" class="form-control" id="password" name="password" placeholder="">
+				            </div>
+				          </div>
+				        </div>
+				        <div class="form-group">
+				          <div class="col-md-12">
+				            <input type="submit" value="注册" class="btn btn-warning">
+				          </div>
+				        </div>
+				        <div class="form-group">
+				       	 	
+				    	</div>
+					</div>
+					<div class="templatemo-other-signin col-md-6">
+						<label class="margin-bottom-15">
+							message
+						</label>
+						<div style="color:red">
+							$!{msg}
+						</div>
+					</div>   
+				</div>				 	
+		      </form>		      		      
+		</div>
+	</div>
+</body>
+</html>
