@@ -29,7 +29,7 @@ public class PassportInterceptor implements HandlerInterceptor {
 	@Override
 	public boolean preHandle(HttpServletRequest request,
 			HttpServletResponse response, Object handler) throws Exception {
-		if (request.getCookies().length == 0) {
+		if (request.getCookies()==null||request.getCookies().length == 0) {
 			return true;
 		}
 		String ticket = null;

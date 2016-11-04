@@ -13,7 +13,7 @@ public class HomeController {
 		//获取菜单的业务逻辑，放到model中
 		return "/admin/index";
 	}
-	@RequestMapping("/customer/home")
+	@RequestMapping(path={"/","/customer/home"})
 	public String userHome(){
 		return "/customer/index";
 	}
