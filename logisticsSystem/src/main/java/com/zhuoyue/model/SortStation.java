@@ -1,25 +1,29 @@
 package com.zhuoyue.model;
 /*
  * @author 吴兵兵
+ * @param rank :级别
+ * 
+ * 
  * */
 public class SortStation {
 	private int id;
-	private int station_id;
+	private int stationId;
 	private int rank;
 	private int province;
 	private int city;
 	private int area;
+	
+	public int getStationId() {
+		return stationId;
+	}
+	public void setStationId(int stationId) {
+		this.stationId = stationId;
+	}
 	public int getId() {
 		return id;
 	}
 	public void setId(int id) {
 		this.id = id;
-	}
-	public int getStation_id() {
-		return station_id;
-	}
-	public void setStation_id(int station_id) {
-		this.station_id = station_id;
 	}
 	public int getRank() {
 		return rank;
