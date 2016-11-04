@@ -4,13 +4,13 @@
 	<groupId>zh2</groupId>
 	<artifactId>zh2</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
+	<packaging>war</packaging>  
 	<name>zh2</name>
 	<description />
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<spring.boot.version>1.3.6.RELEASE</spring.boot.version>
-	</properties>
+	</properties> 
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
