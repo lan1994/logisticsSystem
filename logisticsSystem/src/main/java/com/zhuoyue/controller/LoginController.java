@@ -1,11 +1,15 @@
 package com.zhuoyue.controller;
 
 import java.util.Map;
+
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CookieValue;
@@ -26,8 +30,12 @@ public class LoginController {
 	UserService userService;
 
 	@RequestMapping(path = { "/loginpage" })
-	public String loginpage() {
-		return "login";
+	public String loginpage(HttpServletRequest request,Model model) {
+		if(request.getAttribute("msg")!=null)
+		{
+			model.addAttribute("msg", request.getAttribute("msg"));
+		}
+			return "login";
 	}
 
 	@RequestMapping("/registpage")
