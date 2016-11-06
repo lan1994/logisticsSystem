@@ -3,13 +3,17 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
+
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import com.zhuoyue.dao.LoginTicketDAO;
 import com.zhuoyue.dao.UserDAO;
+import com.zhuoyue.dao.UserMessageDAO;
 import com.zhuoyue.model.LoginTicket;
 import com.zhuoyue.model.User;
+import com.zhuoyue.model.UserMessage;
 import com.zhuoyue.util.LogisticsSystemUtil;
 /*
  * @author 兰心序
@@ -21,6 +25,9 @@ public class UserService {
 	
 	@Autowired
 	LoginTicketDAO loginTicketDAO;
+	
+	@Autowired
+	UserMessageDAO userMessageDAO;
 	
 	public User selectByName(String username){
 		return userDAO.selectByName(username);
@@ -85,6 +92,14 @@ public class UserService {
 	
 	public void updateTicketStatus(String ticket,int status){
 		loginTicketDAO.updateStatus(ticket, status);
+	}
+	
+	public UserMessage selectUserMessageByUserId(int userid){
+		return userMessageDAO.selectByUserId(userid);
+	}
+	
+	public void UpdateUserMessage(UserMessage userMessage){
+		userMessageDAO.updateUserMessage(userMessage);
 	}
 	
 	public String addTicket(int userid){
