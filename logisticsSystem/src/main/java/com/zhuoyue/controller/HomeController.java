@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * */
 @Controller
 public class HomeController {
-	@RequestMapping("/admin/home")
+	@RequestMapping(path={"/admin/home","/admin/"})
 	public String adminHome(Model model){
 		//获取菜单的业务逻辑，放到model中
 		return "/admin/index";

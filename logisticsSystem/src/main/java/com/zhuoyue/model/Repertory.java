@@ -9,7 +9,7 @@ import java.util.Date;
 public class Repertory {
 	private int id;
 	private int sortstationId;
-	private int orderId;
+	private int orderNumber;
 	private int status;
 	private Date date;
 	private int nextStationCode;
@@ -26,11 +26,12 @@ public class Repertory {
 	public void setSortstationId(int sortstationId) {
 		this.sortstationId = sortstationId;
 	}
-	public int getOrderId() {
-		return orderId;
+	
+	public int getOrderNumber() {
+		return orderNumber;
 	}
-	public void setOrderId(int orderId) {
-		this.orderId = orderId;
+	public void setOrderNumber(int orderNumber) {
+		this.orderNumber = orderNumber;
 	}
 	public int getStatus() {
 		return status;

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>后台管理首页</title>
+#parse("/shared/manager_headtitle.html")
+<body>
+	#parse("/shared/manager_head.html")
+	<div class="manager_main">
+		<div class="content">
+			<div class="leftbox">
+				<!-- Begin of  #contentlist -->
+				<div id="pageIntro">
+						
+							<div style="margin:20px auto">
+								<form action="" method="post">
+										<div style="margin:0 auto;width:600px"">
+											<label style="font-size:25px;">订单号:</label> 
+											<input type="text" name="ordernumber" style="width:350px; height:30px;font-size:25px;"/>
+											<button id="bt" style="width:100px; height:30px;font-size:20px;">确认入库</button>
+										</div>
+								</form>	 
+							</div>
+							
+						<div class="contentBox">
+							<div class="contentBoxTop">
+								<h3>
+                    订单信息</h3>
+							</div>
+							<div class="innerContent" style="height:100px">
+										<div id="orderMessage">
+											<table class="sTable">
+												<tr>
+													<th>id</th>
+													<th>订单号</th>
+													<th>客户名称</th>
+													<th>发货地</th>
+													<th>目的地</th>
+												</tr>
+												
+											</table>
+										</div>
+								
+							</div>
+						</div>
+					
+				</div>
+
+			</div>
+			#parse("/shared/manager_siderbar.html")
+		</div>
+	</div>
+	 #parse("/shared/manager_footer.html")
+</body>
+</html>

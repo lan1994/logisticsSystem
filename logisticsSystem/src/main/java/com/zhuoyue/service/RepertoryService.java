@@ -26,7 +26,7 @@ public class RepertoryService {
     
     @Transactional
     public int instock(Repertory repertory){
-    	 List<Repertory> ls = repertoryDAO.selectByOrderId(repertory.getOrderId());
+    	 List<Repertory> ls = repertoryDAO.selectByOrderId(repertory.getOrderNumber());
     	 if(ls!=null&&ls.get(0)!=null){
     		 int lastRepertoryId = ls.get(0).getId();
     		 repertoryDAO.updateStatus(StockStatus.ARRIVAL.getValue(), lastRepertoryId);
