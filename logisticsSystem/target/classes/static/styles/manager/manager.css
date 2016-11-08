@@ -89,7 +89,7 @@ ul#menu
 
 ul#menu li
 {
-    display: inline; /*li鏄剧ず鍚屼竴琛�/
+    display: inline; /*li显示同一行*/
     list-style: none;
     font-size: 14px;
     font-weight: bold;
@@ -103,12 +103,12 @@ ul#menu li a
     padding-bottom: 17px;
     font-weight: bold;
     text-decoration: none;
-    color: #5f5845; /* 瀵艰埅榛樿瀛椾綋棰滆壊*/
+    color: #5f5845; /* 导航默认字体颜色*/
 }
 
-ul#menu li a:hover /* 榧犳爣璺繃鐨勬牱寮�/
+ul#menu li a:hover /* 鼠标路过的样式*/
 {
-    /* 榧犳爣璺繃鐨勬牱寮廱ackground-image: url(images/manager_nav_hover.png);*/
+    /* 鼠标路过的样式background-image: url(images/manager_nav_hover.png);*/
     background-color: #FFFFFF;
     background-repeat: no-repeat;
     text-decoration: none;

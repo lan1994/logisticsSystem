@@ -10,6 +10,10 @@
 					<li><a href="${menuinfo.menuPath}"><c:out
 								value="${menuinfo.menuContent}" /></a></li>
 				</c:forEach> -->
+				
+				#foreach($s in $siderlist)  
+                    <li><a href="../$!s.menuPath">$!s.menuContent</a></li>  
+                #end
 			</ul>
 		</div>
 	</div>
