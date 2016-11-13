@@ -21,6 +21,9 @@ public interface ProvinceDAO {
 	@Select({"select ",SELECT_FIELDS," from ",TABLE_NAME," where id=#{id}"})
 	Province selectById(int id);
 	
+	@Select({"select ",SELECT_FIELDS," from ",TABLE_NAME," where code=#{code}"})
+	Province selectByCode(int code);
+	
 	@Select({"select ",SELECT_FIELDS," from ",TABLE_NAME})
 	List<Province> selectAll();
 }

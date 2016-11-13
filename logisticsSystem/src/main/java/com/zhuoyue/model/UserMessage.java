@@ -11,6 +11,16 @@ public class UserMessage {
 	private int province;
 	private int city;
 	private int area;
+	private int sorttationid;
+	
+	
+	public int getSorttationid() {
+		return sorttationid;
+	}
+
+	public void setSorttationid(int sorttationid) {
+		this.sorttationid = sorttationid;
+	}
 
 	public int getId() {
 		return id;

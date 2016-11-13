@@ -16,16 +16,27 @@ public interface RepertoryDAO {
 	String SELECT_FIELDS = " id,"+INSERT_FIELDS;
 	
 	@Select({"select ",SELECT_FIELDS," from ",TABLE_NAME,
-		    " where sortstationId = #{sortstationId} and status = #{status} limit #{offset},#{limit}"})
+		    " where sortstation_id = #{sortstationId} and status = #{status} limit #{offset},#{limit}"})
 	public List<Repertory> selectByStationId(@Param("sortstationId") int sortstationId,
 													  @Param("status") int status,
 													  @Param("offset") int offset,
 													  @Param("limit")  int limit 
 													 );	
+	@Select({"select count(*)"," from ",TABLE_NAME,
+    " where sortstation_id = #{sortstationId} and status = #{status}"})
+	public int selectCountByStaion(@Param("sortstationId") int sortstationId,@Param("status") int status);
 	
 	@Select({"select ",SELECT_FIELDS," from ",TABLE_NAME,
-	    	" where orderId = #{orderId} order by date desc"})
-	public List<Repertory> selectByOrderId(int orderId);
+	    	" where order_id = #{orderId} order by date desc"})
+	public List<Repertory> selectByOrderId(long orderId);
+	
+	@Select({"select ",SELECT_FIELDS," from ",TABLE_NAME,
+	" where id = #{id} "})
+	public Repertory selectById(int id);
+	
+	@Select({"select ",SELECT_FIELDS," from ",TABLE_NAME,
+	" where sortstation_id = #{sortstationId} and order_id = #{orderId} order by date desc limit 0,1"})
+	public Repertory selectByIdAndStation(@Param("sortstationId") int sortstationId,@Param("orderId")  long orderId);
 	
 	@Insert({"insert into ",TABLE_NAME,"(",INSERT_FIELDS,")",
 			" values(#{sortstationId},#{orderId},#{status},#{date},#{nextStationCode},#{userId})"	

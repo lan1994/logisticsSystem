@@ -1,7 +1,5 @@
 package com.zhuoyue.model;
-
 import java.util.Date;
-
 /*   
  * @author 兰心序
  * 仓库中的订单
@@ -9,7 +7,7 @@ import java.util.Date;
 public class Repertory {
 	private int id;
 	private int sortstationId;
-	private int orderNumber;
+	private long orderId;
 	private int status;
 	private Date date;
 	private int nextStationCode;
@@ -27,11 +25,11 @@ public class Repertory {
 		this.sortstationId = sortstationId;
 	}
 	
-	public int getOrderNumber() {
-		return orderNumber;
+	public long getOrderId() {
+		return orderId;
 	}
-	public void setOrderNumber(int orderNumber) {
-		this.orderNumber = orderNumber;
+	public void setOrderId(long orderId) {
+		this.orderId = orderId;
 	}
 	public int getStatus() {
 		return status;
@@ -57,5 +55,4 @@ public class Repertory {
 	public void setUserId(int userId) {
 		this.userId = userId;
 	}
-	
 }

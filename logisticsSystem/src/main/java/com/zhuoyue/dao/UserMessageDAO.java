@@ -13,11 +13,11 @@ import com.zhuoyue.model.UserMessage;
 @Mapper
 public interface UserMessageDAO {
 	String TABLE_NAME = " usermessage";
-	String INSERT_FIELDS =" user_id,name,mobile,sex,province,city,area";
+	String INSERT_FIELDS =" user_id,name,mobile,sex,province,city,area,sorttationid";
 	String SELECT_FIELDS = " id,"+INSERT_FIELDS;
 	
 	@Insert({"insert into ",TABLE_NAME,"(",INSERT_FIELDS,")"
-		,"values (#{userid},#{name},#{mobile},#{sex},#{province},#{city},#{area})"
+		,"values (#{userid},#{name},#{mobile},#{sex},#{province},#{city},#{area},#{sorttationid})"
 		})
 	int addUserMessage(UserMessage userMessage);
 	

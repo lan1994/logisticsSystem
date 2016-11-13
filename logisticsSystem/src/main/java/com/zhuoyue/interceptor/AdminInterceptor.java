@@ -20,7 +20,7 @@ public class AdminInterceptor implements HandlerInterceptor{
 			HttpServletResponse response, Object handler) throws Exception {
 		if(hostHolder.get()!=null&&hostHolder.get().getUright()==0){
 			request.setAttribute("msg", "权限不足");
-			request.getRequestDispatcher("/loginpage").forward(request, response);
+			request.getRequestDispatcher("/loginpage?next="+request.getRequestURI()).forward(request, response);
 			return false;
 		}
 		return true;

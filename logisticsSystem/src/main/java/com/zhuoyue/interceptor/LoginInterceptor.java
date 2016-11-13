@@ -20,6 +20,7 @@ public class LoginInterceptor implements HandlerInterceptor{
 			HttpServletResponse response, Object handler) throws Exception {
 		if(hostHolder.get()==null){
 			response.sendRedirect("/loginpage?next="+request.getRequestURI());
+			return false; 
 		}
 		return true;
 	}

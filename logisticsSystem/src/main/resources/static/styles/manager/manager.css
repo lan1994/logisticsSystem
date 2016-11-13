@@ -126,11 +126,11 @@ ul#menu li a:active
     font-size: 12px;
     min-height:300px;
     height:100%;
-    left: 0px;
+    left: 200px;
     padding: 0px;    
     margin: 0 auto;
-    min-width:1000px;
-    width: 1000px;
+   
+    width: 1180px;
     background-image:url(/images/images/content_bg.jpg) no-repeat left;
 }
 

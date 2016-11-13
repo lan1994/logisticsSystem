@@ -24,6 +24,9 @@ public interface AreaDAO {
 	@Select({"select ",SELECT_FIELDS," from ",TABLE_NAME," where id=#{id}"})
 	Area selectById(int id);
 	
+	@Select({"select ",SELECT_FIELDS," from ",TABLE_NAME," where code=#{code}"})
+	Area selectByCode(int code);
+	
 	@Select({"select ",SELECT_FIELDS," from ",TABLE_NAME,"where citycode=#{citycode}"})
 	List<Area> selectByProvinceCode(int citycode);
 }

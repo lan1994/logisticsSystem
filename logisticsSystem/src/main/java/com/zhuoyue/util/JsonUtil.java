@@ -41,7 +41,7 @@ public class JsonUtil {
 		return json.toJSONString();
 	} 
 	
-	public static JSONObject getJSON(JSONObject json,List<Map<String,Object>> list){
+	private static JSONObject getJSON(JSONObject json,List<Map<String,Object>> list){
 		JSONArray jsonArray = new JSONArray();
 		for(Map<String, Object> map : list){
 			JSONObject jsobj = new JSONObject();

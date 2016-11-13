@@ -2,21 +2,64 @@ package com.zhuoyue.model;
 /*
  * @author 吴兵兵
  * @param rank :级别
+ * @param adminId :管理员id
  * 
  * 
  * */
 public class SortStation {
 	private int id;
-	private int stationId;
+	private String stationId;
+	private String stationName;
+	private int adminId;
+	private String manager;
+	private String tel;
+	private String mobile;
+	private String address;
 	private int rank;
 	private int province;
 	private int city;
 	private int area;
-	
-	public int getStationId() {
+
+	public String getStationName() {
+		return stationName;
+	}
+	public void setStationName(String stationName) {
+		this.stationName = stationName;
+	}
+	public int getAdminId() {
+		return adminId;
+	}
+	public void setAdminId(int adminId) {
+		this.adminId = adminId;
+	}
+	public String getManager() {
+		return manager;
+	}
+	public void setManager(String manager) {
+		this.manager = manager;
+	}
+	public String getTel() {
+		return tel;
+	}
+	public void setTel(String tel) {
+		this.tel = tel;
+	}
+	public String getMobile() {
+		return mobile;
+	}
+	public void setMobile(String mobile) {
+		this.mobile = mobile;
+	}
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
+	public String getStationId() {
 		return stationId;
 	}
-	public void setStationId(int stationId) {
+	public void setStationId(String stationId) {
 		this.stationId = stationId;
 	}
 	public int getId() {

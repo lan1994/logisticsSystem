@@ -24,6 +24,9 @@ public interface CityDAO {
 	@Select({"select ",SELECT_FIELDS," from ",TABLE_NAME," where id=#{id}"})
 	City selectById(int id);
 	
+	@Select({"select ",SELECT_FIELDS," from ",TABLE_NAME," where code=#{code}"})
+	City selectByCode(int code);
+	
 	@Select({"select ",SELECT_FIELDS," from ",TABLE_NAME,"where provincecode=#{provincecode}"})
 	List<City> selectByProvinceCode(int provincecode);
 }

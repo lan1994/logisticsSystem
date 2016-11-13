@@ -15,4 +15,7 @@ public class ViewObject {
 	public void set(String key, Object value) {
 		objs.put(key, value);
 	}
+	public Map<String,Object> getVOMap(){
+		return objs;
+	}
 }

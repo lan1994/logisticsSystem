@@ -30,11 +30,14 @@ public class LoginController {
 	UserService userService;
 
 	@RequestMapping(path = { "/loginpage" })
-	public String loginpage(HttpServletRequest request,Model model) {
+	public String loginpage(HttpServletRequest request,Model model,
+			 				@RequestParam(value = "next", required = false) String next
+			 ) {
 		if(request.getAttribute("msg")!=null)
 		{
 			model.addAttribute("msg", request.getAttribute("msg"));
 		}
+			model.addAttribute("next", next);
 			return "login";
 	}
 
@@ -67,7 +70,8 @@ public class LoginController {
 					return next == null || next.equals("") ? "redirect:/customer/home"
 							: "redirect:" + next;
 				else {
-					return "redirect:/admin/home";
+					return next == null || next.equals("") ?"redirect:/admin/home"
+							: "redirect:" + next;
 				}
 			}
 		} catch (Exception e) {

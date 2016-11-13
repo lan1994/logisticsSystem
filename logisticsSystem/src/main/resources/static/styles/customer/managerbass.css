@@ -1,4 +1,4 @@
-body {
+ body {
 	font-size: 12px;
 	font-family: "Microsoft Yahei", Arial, Helvetica, sans-serif, "黑体";
 	color: #666666;
@@ -6,7 +6,7 @@ body {
 	margin: 0 auto;
 }
 
-.fl {
+.flk {
 	float: left;
 }
 
@@ -118,8 +118,6 @@ dd,h2,h3,span {
 	width: 960px;
 	margin: 0 auto;
 	height: 83px;
-	
-
 }
 
 #logo img {

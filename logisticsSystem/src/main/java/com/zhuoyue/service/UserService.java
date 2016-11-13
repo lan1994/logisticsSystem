@@ -1,6 +1,7 @@
 package com.zhuoyue.service;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -8,9 +9,11 @@ import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.zhuoyue.dao.CommonlyAddressDAO;
 import com.zhuoyue.dao.LoginTicketDAO;
 import com.zhuoyue.dao.UserDAO;
 import com.zhuoyue.dao.UserMessageDAO;
+import com.zhuoyue.model.CommonlyAddress;
 import com.zhuoyue.model.LoginTicket;
 import com.zhuoyue.model.User;
 import com.zhuoyue.model.UserMessage;
@@ -28,6 +31,29 @@ public class UserService {
 	
 	@Autowired
 	UserMessageDAO userMessageDAO;
+	
+	@Autowired
+	CommonlyAddressDAO commonlyAddressDAO;
+	
+	public int selectAddressCountByUserId(int userId){
+		return commonlyAddressDAO.selectAddressCountByUserId(userId);
+	}
+	
+	public void uptateAddress(CommonlyAddress commonlyAddress){
+		commonlyAddressDAO.updateAddress(commonlyAddress);
+	}
+	
+	public int addAddress(CommonlyAddress commonlyAddress){
+		return commonlyAddressDAO.addRepertory(commonlyAddress);
+	}
+	
+	public List<CommonlyAddress> selectByUserId(int userId,int offset,int limit){
+		return commonlyAddressDAO.selectByUserId(userId, offset, limit);
+	}
+	
+	public CommonlyAddress selectAddressById(int id){
+		return commonlyAddressDAO.selectById(id);
+	}
 	
 	public User selectByName(String username){
 		return userDAO.selectByName(username);

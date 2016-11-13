@@ -2,76 +2,92 @@ package com.zhuoyue.model;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Random;
 /*
  * @author 阮飞
  * */
 public class Order {
-	private int oder_id;  //id
-	private int ordernumber;//订单号
-	private String sender; //发货人	
-	private String sender_address;//发货地址
-	private String addressee;//收件人
-	private String site_addressee;//收件地址
-	private Date order_schedule;//订单时间
+	
+	private long orderNumber;//订单号
+	private int userId;  //用户id
+	private int sendaddressId;//发件地址 
+	private int readdressId;//收件地址
+	private Date orderSchedule;//订单时间
 	private int timeliness;//0为修改前的   1为修改后的
 	private int state;  //0表示还未收货，1表示已经收货
-	public int getOder_id() {
-		return oder_id;
+	
+    
+	public static long getRandomOrderNumber() {
+		int orderNum = (int) (Math.random()*9000+100);
+		 String date = null ;
+	    String str = new SimpleDateFormat("yyMMddHHmmss").format(new Date());  
+	    if(date==null||!date.equals(str)){  
+	        date = str;  
+	    }  
+	    orderNum ++ ;  
+	    long orderNo = Long.parseLong((date)) * 1000;  
+	    orderNo += orderNum;;  
+		return orderNo;
 	}
-	public void setOder_id(int oder_id) {
-		this.oder_id = oder_id;
+
+
+	public long getOrderNumber() {
+		
+		return orderNumber;
 	}
-	public int getOrdernumber() {
-		return ordernumber;
+
+	public void setOrderNumber(long orderNumber) {
+		this.orderNumber = orderNumber;
 	}
-	public void setOrdernumber(int ordernumber) {
-		this.ordernumber = ordernumber;
+
+	public int getUserId() {
+		return userId;
 	}
-	public String getSender() {
-		return sender;
+
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
-	public void setSender(String sender) {
-		this.sender = sender;
+
+	public int getSendaddressId() {
+		return sendaddressId;
 	}
-	public String getSender_address() {
-		return sender_address;
+
+	public void setSendaddressId(int sendaddressId) {
+		this.sendaddressId = sendaddressId;
 	}
-	public void setSender_address(String sender_address) {
-		this.sender_address = sender_address;
+
+	public int getReaddressId() {
+		return readdressId;
 	}
-	public String getAddressee() {
-		return addressee;
+
+	public void setReaddressId(int readdressId) {
+		this.readdressId = readdressId;
 	}
-	public void setAddressee(String addressee) {
-		this.addressee = addressee;
-	}
-	public String getSite_addressee() {
-		return site_addressee;
-	}
-	public void setSite_addressee(String site_addressee) {
-		this.site_addressee = site_addressee;
-	}
+
 	public int getTimeliness() {
 		return timeliness;
 	}
+
 	public void setTimeliness(int timeliness) {
-		this.timeliness = timeliness;
+		this.timeliness = 1;
 	}
+
 	public int getState() {
 		return state;
 	}
+
 	public void setState(int state) {
-		this.state = state;
+		this.state = 0;
 	}
-	
+
 	//获取时间
-	public String getorder_schedule(){
+	public String getorderSchedule(){
 		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd hh:mm");
-		return sdf.format(order_schedule);
+		return sdf.format(orderSchedule);
 	}
 	
-	public void setorder_schedule(){
-		this.order_schedule=order_schedule;
+	public void setorderSchedule(Date orderSchedule){
+		this.orderSchedule=orderSchedule;
 	}
 	
 
