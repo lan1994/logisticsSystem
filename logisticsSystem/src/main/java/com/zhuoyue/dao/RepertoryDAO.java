@@ -12,7 +12,7 @@ import com.zhuoyue.model.Repertory;
 @Mapper
 public interface RepertoryDAO {
 	String TABLE_NAME = " repertory";
-	String INSERT_FIELDS =" sortstation_id, order_id, status, date,nextStationCode,user_id";
+	String INSERT_FIELDS =" sortstation_id, order_id, status, date,nextStationCode,user_id,modify";
 	String SELECT_FIELDS = " id,"+INSERT_FIELDS;
 	
 	@Select({"select ",SELECT_FIELDS," from ",TABLE_NAME,
@@ -39,10 +39,13 @@ public interface RepertoryDAO {
 	public Repertory selectByIdAndStation(@Param("sortstationId") int sortstationId,@Param("orderId")  long orderId);
 	
 	@Insert({"insert into ",TABLE_NAME,"(",INSERT_FIELDS,")",
-			" values(#{sortstationId},#{orderId},#{status},#{date},#{nextStationCode},#{userId})"	
+			" values(#{sortstationId},#{orderId},#{status},#{date},#{nextStationCode},#{userId},#{modify})"	
 	})
 	public int addRepertory(Repertory repertory);
 	
 	@Update({"update ",TABLE_NAME," set status = #{status} where id=#{id}"})
 	public void updateStatus(@Param("status") int status,@Param("id") int id);
+	
+	@Update({"update ",TABLE_NAME," set nextStationCode = #{next},modify=#{modify},status=#{status} where id=#{id}"})
+	public void updateNextStationAndOut(@Param("next") int next,@Param("status")int status,@Param("id") int id,@Param("modify") int modify);
 }

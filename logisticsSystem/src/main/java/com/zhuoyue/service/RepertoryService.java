@@ -35,6 +35,10 @@ public class RepertoryService {
     	return repertoryDAO.selectByIdAndStation(next, orderId);
     }
     
+    public Repertory selectById(int repertoryId){
+    	return repertoryDAO.selectById(repertoryId);
+    }
+    
     @Transactional
     public int instock(Repertory repertory){
     	 List<Repertory> ls = repertoryDAO.selectByOrderId(repertory.getOrderId());
@@ -47,6 +51,10 @@ public class RepertoryService {
     
     public int outstock(int repertId){
     	Repertory repertory = repertoryDAO.selectById(repertId);
+    	if(repertory.getNextStationCode()==0){
+    		repertoryDAO.updateStatus(StockStatus.ONTHEWAY.getValue(), repertId);
+    		return 1;
+    	}
     	SortStation sortStation = sortStationDAO.selectById(repertory.getNextStationCode());
     	if(sortStation!=null){
     		repertoryDAO.updateStatus(StockStatus.ONTHEWAY.getValue(), repertId);
@@ -55,6 +63,22 @@ public class RepertoryService {
     	}
     	return 1;
     }
+    
+    public int outstock(int repertId,int next,int modify){
+    	Repertory repertory = repertoryDAO.selectById(repertId);
+    	if(repertory.getNextStationCode()==0){
+    		repertoryDAO.updateNextStationAndOut(next,StockStatus.ONTHEWAY.getValue(),repertId,modify);
+    		return 1;
+    	}
+    	SortStation sortStation = sortStationDAO.selectById(next);
+    	if(sortStation!=null){
+    		repertoryDAO.updateNextStationAndOut(next,StockStatus.ONTHEWAY.getValue(),repertId,modify);
+    	}else{
+    		return 0;
+    	}
+    	return 1;
+    }
+    
     
     public void updateStatus(int status,int repertoryId){
     	repertoryDAO.updateStatus(status, repertoryId);

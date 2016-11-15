@@ -21,6 +21,7 @@ import com.zhuoyue.model.City;
 import com.zhuoyue.model.CommonlyAddress;
 import com.zhuoyue.model.HostHolder;
 import com.zhuoyue.model.Order;
+import com.zhuoyue.model.Province;
 import com.zhuoyue.model.Repertory;
 import com.zhuoyue.model.SortStation;
 import com.zhuoyue.model.User;
@@ -109,24 +110,137 @@ public class StockController {
 		model.addAttribute("vos", vos);
 		return "/admin/stock/stock";
 	}
-	/*
+	
 	@RequestMapping("/admin/outstock")
 	@ResponseBody
-	public String outstock(){
-		
-	}*/
-	@RequestMapping("/admin/outstock")
-	@ResponseBody
-	public String outstock(@RequestParam("repertoryid") int repertoryid){
+	public String outstock(@RequestParam("repertoryid") int repertoryid,
+						   @RequestParam(value="next",required=false,defaultValue="0") int next){
 		int code = repertoryService.outstock(repertoryid);
 		return JsonUtil.getJSONString(code,String.valueOf(repertoryid));
 	}
 	
+	@RequestMapping("/admin/outstockwithmodify")
+	@ResponseBody
+	public String outstockwithmodify(@RequestParam("repertoryid") int repertoryid,
+						   			 @RequestParam("next") int next){
+		int code = repertoryService.outstock(repertoryid, next, 1);
+		if(code==0){
+			return JsonUtil.getJSONString(0);
+		}
+		ViewObject vo = new ViewObject();
+		vo.set("status", "已出库，未到达");
+		SortStation sortStation = sortStationDAO.selectById(next);
+		vo.set("next",sortStation.getStationName());
+		return JsonUtil.getJSONString(code,vo.getVOMap());
+	}
+	
+	
 	@RequestMapping("/admin/outstockpage")
-	public String outstockpage(Model model) {
-		
+	public String outstockpage(Model model,@RequestParam(value="repertoryId",required=false,defaultValue="0") int repertoryId) {
+			Repertory repertory = null;
+		if(repertoryId==0)
+		{
+			return "/admin/stock/outstock";
+		}
+			repertory = repertoryService.selectById(repertoryId);
+			if(repertory==null)
+			{
+				model.addAttribute("msg", "查询信息有误");
+			}else
+			{	//订单所在分拣站
+				SortStation sortStation = sortStationDAO.selectById(repertory.getSortstationId());
+				Province province = areaService.selectProvinceByCode(sortStation.getProvince());
+				City city = areaService.selectCityByCode(sortStation.getCity());
+				model.addAttribute("province", province.getName());
+				model.addAttribute("city", city.getName());
+				model.addAttribute("citycode",city.getCode());
+				model.addAttribute("stationname", sortStation.getStationName());
+				model.addAttribute("ordernumber", repertory.getOrderId());
+				StockStatus status = StockStatus.valueof(repertory.getStatus());
+				model.addAttribute("status", status.getValueString());
+				SortStation next = sortStationDAO.selectById(repertory.getNextStationCode());
+				if(next!=null)
+				{
+				model.addAttribute("next",next.getStationName());
+				}else
+				{
+					model.addAttribute("next","客户");
+				}
+				model.addAttribute("id", repertoryId);
+				int hostid = hostHolder.get().getId();
+				if(userService.selectUserMessageByUserId(hostid).getSorttationid()!=repertory.getSortstationId()
+						||repertory.getStatus()!=2)
+				{
+					model.addAttribute("canout",0);
+				}else
+				{
+					model.addAttribute("canout", 1);
+				}
+				Order order = orderDAO.getByNumber(repertory.getOrderId());
+				CommonlyAddress commonlyAddress = userService.selectAddressById(order.getReaddressId());
+				Province toprovince = areaService.selectProvinceByCode(commonlyAddress.getProvince());
+				City tocity = areaService.selectCityByCode(commonlyAddress.getCity());
+				Area toarea = areaService.selectAreaByCode(commonlyAddress.getArea());
+				model.addAttribute("toprovince", toprovince.getName());
+				model.addAttribute("tocity", tocity.getName());
+				model.addAttribute("toarea", toarea.getName());
+				model.addAttribute("detailaddress", commonlyAddress.getDetailAddress());
+			}
 		return "/admin/stock/outstock";
 	}
+	
+	@RequestMapping("/admin/queryandout")
+	@ResponseBody
+	public String queryandout(@RequestParam(value="ordernumber",required=false,defaultValue="0") int ordernumber) {
+			List<Repertory> list = repertoryService.selectByOrderId(ordernumber);
+			ViewObject vo = new ViewObject();
+			if(list==null||list.size()==0)
+			{
+				return JsonUtil.getJSONString(0);
+			}else
+			{	//订单所在分拣站
+				Repertory repertory = list.get(0);
+				SortStation sortStation = sortStationDAO.selectById(repertory.getSortstationId());
+				Province province = areaService.selectProvinceByCode(sortStation.getProvince());
+				City city = areaService.selectCityByCode(sortStation.getCity());
+				vo.set("province", province.getName());
+				vo.set("city", city.getName());
+				vo.set("citycode",city.getCode());
+				vo.set("stationname", sortStation.getStationName());
+				StockStatus status = StockStatus.valueof(repertory.getStatus());
+				vo.set("status", status.getValueString());
+				SortStation next = sortStationDAO.selectById(repertory.getNextStationCode());
+				if(next!=null)
+				{
+				vo.set("next",next.getStationName());
+				}else
+				{
+				vo.set("next", "客户");
+				}
+				vo.set("id", repertory.getId());
+				vo.set("ordernumber", ordernumber);
+				int hostid = hostHolder.get().getId();
+				if(userService.selectUserMessageByUserId(hostid).getSorttationid()!=repertory.getSortstationId()
+						||repertory.getStatus()!=2)
+				{
+					vo.set("canout",0);
+				}else
+				{
+					vo.set("canout", 1);
+				}
+				Order order = orderDAO.getByNumber(ordernumber);
+				CommonlyAddress commonlyAddress = userService.selectAddressById(order.getReaddressId());
+				Province toprovince = areaService.selectProvinceByCode(commonlyAddress.getProvince());
+				City tocity = areaService.selectCityByCode(commonlyAddress.getCity());
+				Area toarea = areaService.selectAreaByCode(commonlyAddress.getArea());
+				vo.set("toprovince", toprovince.getName());
+				vo.set("tocity", tocity.getName());
+				vo.set("toarea", toarea.getName());
+				vo.set("detailaddress", commonlyAddress.getDetailAddress());
+			}
+		return JsonUtil.getJSONString(1, vo.getVOMap());
+	}
+	
 	//入库页面
 	@RequestMapping("/admin/instockpage")
 	public String instockpage(){
@@ -155,7 +269,7 @@ public class StockController {
 		int destnyareacode = commonlyAddress.getArea();
 		
 		repertory = new Repertory();
-		if(destnyareacode==sortstationAreaCode)
+		if(destnyareacode==sortstationAreaCode||repertory.getModify()==1)
 		{//在3级分拣站，且下一站是目的地
 			repertory.setNextStationCode(0);
 		}else
@@ -214,6 +328,7 @@ public class StockController {
 		}
 		Order order = orderDAO.getByNumber(repertory.getOrderId());
 		ViewObject vo = new ViewObject();
+		vo.set("canout",repertory.getStatus());
 		vo.set("id", repertory.getId());
 		vo.set("ordernumber",order.getOrderNumber());
 		

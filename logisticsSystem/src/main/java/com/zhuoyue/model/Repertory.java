@@ -12,6 +12,7 @@ public class Repertory {
 	private Date date;
 	private int nextStationCode;
 	private int userId;
+	private int modify;
 	public int getId() {
 		return id;
 	}
@@ -55,4 +56,11 @@ public class Repertory {
 	public void setUserId(int userId) {
 		this.userId = userId;
 	}
+	public int getModify() {
+		return modify;
+	}
+	public void setModify(int modify) {
+		this.modify = modify;
+	}
+	
 }

@@ -3,25 +3,91 @@
 <head>
 <meta charset="UTF-8">
 <title>后台管理首页</title>
-<!-- <jsp:include page="../shared/manager_headtitle.jsp"></jsp:include> -->
 #parse("/shared/manager_headtitle.html")
+<link rel="stylesheet" type="text/css" href="/styles/manager/stock/instock.css" />
+<script type="text/javascript" src="/scripts/js/jquery-1.6.2.js"></script>
+<script type="text/javascript" src="/scripts/stock/outstock.js"></script>
 <body>
-	<!-- <jsp:include page="../shared/manager_head.jsp"></jsp:include> -->
 	#parse("/shared/manager_head.html")
 	<div class="manager_main">
 		<div class="content">
 			<div class="leftbox">
 				<!-- Begin of  #contentlist -->
 				<div id="pageIntro">
-					
+							<div id="success" class="hidden"><img src="/images/stock/actionsuccess.png"/></div>
+                            <div id="error" class="hidden"><img src="/images/stock/actionerror.png"/></div>
+							<div style="margin:20px auto">
+								<form action="" method="post">
+										<div style="margin:0 auto;width:600px"">
+											<label style="font-size:25px;">查询订单号:</label> 
+											<input type="text" name="ordernumber" id="ordernumber" style="width:300px; height:30px;font-size:25px;"/>
+											<input type="button" id="bt" style="width:100px; height:30px;font-size:20px;" value="查询"/>
+										</div>
+								</form>	 
+							</div>
+							<div class="contentBox">
+							<div class="contentBoxTop">
+								<h3>
+                		    		手动出库
+                		        </h3>
+							</div>
+							<div class="innerContent" style="height:300px;font-size:18px">
+								<div id="message">
+									<div class="leftfloatlxx">订单号：</div>
+									<div class="leftfloatlxx" id="order">$!ordernumber</div>
+									<div class="clearfix"></div> 
+									<br/>
+									<div class="leftfloatlxx">目前所在库：</div>
+									<div class="leftfloatlxx" id="province">$!province</div>
+									<div class="leftfloatlxx" id="city">$!city</div>
+									<div class="leftfloatlxx" id="stationname">$!stationname</div>
+									<div class="clearfix"></div> 
+									<br/>
+									<div class="leftfloatlxx">目的地：</div>
+									<div class="leftfloatlxx" id="toprovince">$!toprovince</div>
+									<div class="leftfloatlxx" id="tocity">$!tocity</div>
+									<div class="leftfloatlxx" id="toarea">$!toarea</div>
+									<div class="leftfloatlxx" id="detailaddress">$!detailaddress</div>
+									<div class="clearfix"></div> 
+									<br/>
+									<div class="leftfloatlxx">当前下一站:&nbsp;&nbsp;</div>
+									<div class="leftfloatlxx" id="next">$!next</div>
+									<div class="clearfix"></div> 
+									<br/>
+									<div class="leftfloatlxx" >状态:&nbsp;&nbsp;</div>
+									<div class="leftfloatlxx" id="status">$!status</div>
+									<div class="clearfix"></div> 
+									<br/>
+								</div>
+								<div id="choose">
+									<div class="leftfloatlxx">变更三级分拣站 :&nbsp;&nbsp;&nbsp;</div>
+									<div class="leftfloatlxx">
+										<form>
+											<input type="hidden" value="$!id" name="repertoryid" id="repertoryid">
+											<input type="hidden" value="$!citycode" name="citycode" id="citycode">
+											<select id="area">
+												<option value="default">请选择</option>
+											</select>
+											<select id="sortstation">
+												<option value="default">请选择</option>
+											</select>
+											#if($canout==1)
+											<input type="button" value="确认变更并出库" id="outstockbt"/>
+											#else
+											<input type="button" value="确认变更并出库" id="outstockbt" disabled="disabled"/>
+											#end
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
 				</div>
-
+			
+			<!--pageIntro end  -->
 			</div>
-			<!-- <jsp:include page="../shared/manager_siderbar.jsp"></jsp:include> -->
 			#parse("/shared/manager_siderbar.html")
 		</div>
 	</div>
-	<!-- <jsp:include page="../shared/manager_footer.jsp"></jsp:include> -->
 	 #parse("/shared/manager_footer.html")
 </body>
 </html>

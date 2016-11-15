@@ -1,7 +1,14 @@
 body
 {
 }
-
+.clearfix:after {
+	content: "clearfix";
+	display: block;
+	visibility: hidden;
+	height: 0;
+	clear: both;
+	overflow: hidden;
+}
 #pageIntro
 {
     padding: 0 6px;

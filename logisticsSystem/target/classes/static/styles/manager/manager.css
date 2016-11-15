@@ -147,13 +147,15 @@ ul#menu li a:active
 .manager_footer
 {
     background-image: url(/images/images/manager_footer_bg.png);
-    height: 133px;
+    height: 80px;
     min-width:1000px;
     width: 100%;
     font-size: 12px;
     color: #ffffff;
     border: none;
     left: 0px;
+    position:fixed;
+    bottom:0;
 }
 .manager_footer_left
 {
