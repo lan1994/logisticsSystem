@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.swing.text.View;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -367,5 +369,32 @@ public class StockController {
 			}
 		}
 		return JsonUtil.getJSONString(1, vo.getVOMap());
+	}
+	
+	@RequestMapping("/customer/queryorder")
+	public String queryorder(@RequestParam("orderId") int orderId,Model model){
+		List<Repertory> list = repertoryService.selectByOrderId(orderId);
+		if(list==null||list.size()==0){
+			model.addAttribute("msg","没有找到该订单的相关信息");
+			return "/customer/index";
+		}
+		List<ViewObject> vos = new ArrayList<ViewObject>();
+		for(Repertory repertory:list){
+			ViewObject vo = new ViewObject();
+			vo.set("date",repertory.getDate());
+			StockStatus stockStatus = StockStatus.valueof(repertory.getStatus());
+			vo.set("msg",stockStatus.getValueString());
+			SortStation nowstation = sortStationDAO.selectById(repertory.getSortstationId());
+			vo.set("nowstation", nowstation.getStationName());
+			SortStation nextsSortStation = sortStationDAO.selectById(repertory.getNextStationCode());
+			if(nextsSortStation==null&&repertory.getNextStationCode()==0){
+				vo.set("next", "正在派送，请耐心等待！");
+			}else{
+				vo.set("next", nextsSortStation.getStationName());
+			}
+			vos.add(vo);
+		}
+		model.addAttribute("vos", vos);
+		return "/customer/index";
 	}
 }
