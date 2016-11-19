@@ -6,7 +6,7 @@ public class UserMessage {
 	private int id;
 	private int userid;
 	private String name;
-	private int mobile;
+	private String mobile;
 	private char sex;
 	private int province;
 	private int city;
@@ -46,11 +46,12 @@ public class UserMessage {
 		this.name = name;
 	}
 
-	public int getMobile() {
+
+	public String getMobile() {
 		return mobile;
 	}
 
-	public void setMobile(int mobile) {
+	public void setMobile(String mobile) {
 		this.mobile = mobile;
 	}
 

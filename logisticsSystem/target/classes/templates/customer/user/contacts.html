@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			body {
+				font-size: 12px;
+				font-family: "Microsoft Yahei", Arial, Helvetica, sans-serif, "黑体";
+				color: #666666;
+				line-height: 2.0;
+				margin: 0 auto;
+			}
+			
+			.clearfix:after {
+				content: "clearfix";
+				display: block;
+				visibility: hidden;
+				height: 0;
+				clear: both;
+				overflow: hidden;
+			}
+			
+			.mt {
+				padding: 10px 0;
+			}
+			
+			a.e-btn:link,
+			a.e-btn:visited {
+				border: 1px solid #e6e6e6;
+				color: #333;
+				text-decoration: none;
+			}
+			
+			a.add-btn {
+				display: inline-block;
+				vertical-align: middle;
+				font-weight: 700;
+				padding: 0 14px;
+				height: 28px;
+				line-height: 28px;
+				font-size: 14px;
+				margin: 0 10px 0 0;
+				background-color: #f5fbef;
+				/*background-image: linear-gradient(to bottom,#f5fbef 0,#eaf6e2 100%);*/
+			}
+			
+			.contacts_1 {
+				border: 2px solid #e6e6e6;
+				margin: 0 0 10px;
+				height: 195px;
+				width: 830px;
+				z-index: 1;
+			}
+			
+			.contacts_name {
+				width: 825PX;
+				padding-left: 10px;
+				line-height: 35px;
+				height: 35px;
+				position: relative;
+				display: inline-block;
+				display: block;
+				overflow: visible;
+			}
+			
+			.contacts_name h3 {
+				float: left;
+				color: #666;
+				font-family: "microsoft yahei";
+				margin: 0;
+				padding: 0;
+			}
+			
+			.contacts_name .extra {
+				float: right;
+				margin: 0 10px 0 0;
+				padding: 0;
+			}
+			
+			.contacts_INFO {
+				margin: 0;
+				padding: 10px;
+				line-height: 22px;
+				width: 788px;
+			}
+			
+			.f1 {
+				float: left;
+			}
+			
+			.contacts_1 .contacts_INFO .new-items {
+				position: relative;
+				width: 788px;
+			}
+			
+			.contacts_1 .contacts_INFO .item-lcol {
+				width: 360px;
+				float: left;
+			}
+			
+			.item1 span {
+				float: left;
+				width: 70px;
+				color: #999;
+				text-align: right;
+			}
+		.thickbox {
+			/*left: 109.5px; top: 187px; width: 762px; height: 450px;*/
+			position: fixed;
+			z-index: 10000002;
+			overflow: hidden;
+			padding: 0;
+			border: 4px solid rgba(0, 0, 0, .1);
+			z-index: 3;
+			border-radius: 5px;
+			-moz-border-radius: 5px;
+			-webkit-border-radius: 5px;
+		}
+		
+		.thicktitle {
+			height: 27px;
+			padding: 0 10px;
+			border: solid #C4C4C4;
+			border-width: 1px 1px 0;
+			background: #F3F3F3;
+			line-height: 27px;
+			font-family: arial, "\5b8b\4f53";
+			font-size: 14px;
+			font-weight: 700;
+			color: #333;
+		}
+		
+		.thickcon {
+			overflow: auto;
+			background: #fff;
+			border: solid #C4C4C4;
+			border-width: 1px;
+			padding: 10px;
+		}
+		
+		#edit-cont {
+			padding: 20px;
+		}
+		
+		#edit-cont .item {
+			margin: 0 0 5px;
+			line-height: 22px;
+		}
+		
+		#edit-cont .item .label {
+			float: none;
+			display: block;
+			vertical-align: middle;
+			color: #999;
+			text-align: left;
+		}
+		
+		.form em {
+			color: #e4393c;
+		}
+		
+		#edit-cont .item .text {
+			height: 18px;
+			line-height: 18px;
+			padding: 6px;
+			width: 220px;
+			margin-right: 5px;
+			vertical-align: middle;
+		}
+		
+		#edit-cont .item .text1 {
+			width: 484px;
+		}
+		
+		#edit-cont .item .sele {
+			width: auto;
+			margin-right: 10px;
+		}
+		#edit-cont .item .f1 .extra-span{
+			margin: 26px 5px 0;
+			display: block;
+		}
+		.form .sele,
+		.form .selt {
+			line-height: 18px;
+			border: 1px solid #ccc;
+			padding: 5px;
+			float: none;
+			font-family: "Microsoft YaHei";
+			font-size: 12px;
+		}
+		
+		#edit-cont .btns {
+			margin: 20px 0 0;
+			background-image: linear-gradient(to bottom, #F7F7F7 0, #F3F2F2 100%);
+			border-radius: 2px;
+			display: inline-block;
+			border: 1px solid #ddd;
+		}
+		
+		a.save-btn {
+			height: 28px;
+			line-height: 28px;
+			padding: 0 14px;
+			font-size: 14px;
+		}
+		
+		.btn-9 {
+			background-color: #F7F7F7;
+		}
+		
+		.thickclose:link,
+		.thickclose:visited {
+			display: block;
+			position: absolute;
+			z-index: 100000;
+			top: 7px;
+			right: 12px;
+			overflow: hidden;
+			width: 15px;
+			height: 15px;
+			background: url(/images/customer_img/XXX.gif) no-repeat 0 -18px;
+			font-size: 0;
+			line-height: 100px;
+		}
+		
+		a.e-btn:link,
+		a.e-btn:visited {
+			color: #333;
+			text-decoration: none;
+		}
+		
+		#addressbg{
+			width: 100%;
+			background-color: #f5f5f5;
+			z-index: 2;
+			position:fixed;
+			left:0px;
+			top:0px;
+			display: none;
+			height: 100%;
+			opacity: 0.6;
+			filter:alpha(opacity=60);
+		}
+		</style>
+	</head>
+
+	<body>
+	 <div class="maincontent"> 
+		<div id="addressList" class="mod-main " style="z-index: 1;">
+			<div class="mt">
+				<a onclick="alertAddAddressDiag()" class="e-btn add-btn btn-5" href="javascript:;">新增收货地址</a>
+				<!--<span class="ftx-03">您已创建<span id="addressNum_top" class="ftx-02">3 </span>个收货地址，最多可创建<span class="ftx-02">20</span>个</span>-->
+			</div>
+		</div>
+		<!--常用联系人 框体-->
+		<div class="contacts_1 " id="001">
+			<!--联系人姓名 左上角 以及右上角 删除按钮-->
+			<div class="contacts_name">
+				<h3>王一鸣</h3>
+				<div class="extra">
+					<a onclick="" class="del-btn" href="#none">删除</a>
+				</div>
+				<!--联系人姓名 左上角 以及右上角 删除按钮 结束-->
+			</div>
+			<!--常用联系人 框体 结束-->
+
+			<!--常用联系人 详细信息-->
+			<div class="contacts_INFO">
+				<div class="items new-items">
+					<div class="item-lcol">
+						<div class="item1">
+							<span class="label">姓名：</span>
+							<div class="fl" style="width: 360px;height: 22px;">
+								王一鸣
+							</div>
+							<div class="clearfix"></div>
+						</div>
+						<div class="item1">
+							<span class="label">所在地区：</span>
+							<div class="fl"  style="width: 360px;height: 22px;">
+								陕西省西安市未央区
+							</div>
+							<div class="clearfix"></div>
+						</div>
+						<div class="item1">
+							<span class="label">地址：</span>
+							<div class="fl"  style="width: 360px;height: 22px;">
+								未央粮食局家属院4栋101
+							</div>
+							<div class="clearfix"></div>
+						</div>
+						<div class="item1">
+							<span class="label">手机：</span>
+							<div class="fl"   style="width: 360px;height: 22px;">
+								13659556598
+							</div>
+							<div class="clearfix"></div>
+						</div>
+						<div class="item1">
+							<span class="label">固定电话：</span>
+							<div class="fl"  style="width: 360px;height: 22px;">
+								13659556598
+							</div>
+							<div class="clearfix"></div>
+						</div>
+						<div class="item1">
+							<span class="label">电子邮箱：</span>
+							<div class="clearfix">
+								35416816846@qq.com
+							</div>
+							<div class="clearfix"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!--常用联系人 详细信息 结束-->
+		</div>
+
+		<!--常用联系人 框体-->
+		<div class="contacts_1 " id="002">
+			<!--联系人姓名 左上角 以及右上角 删除按钮-->
+			<div class="contacts_name">
+				<h3>高天成</h3>
+				<div class="extra">
+					<a onclick="alertDelAddressDiag(51871337);" class="del-btn" href="#none">删除</a>
+				</div>
+				<!--联系人姓名 左上角 以及右上角 删除按钮 结束-->
+			</div>
+			<!--常用联系人 框体 结束-->
+
+			<!--常用联系人 详细信息-->
+			<div class="contacts_INFO">
+				<div class="items new-items">
+					<div class="item-lcol">
+						<div class="item1">
+							<span class="label">姓名：</span>
+							<div class="fl"  style="width: 360px;height: 22px;">
+								高天成
+							</div>
+							<div class="clearfix"></div>
+						</div>
+						<div class="item1">
+							<span class="label">所在地区：</span>
+							<div class="fl"  style="width: 360px;height: 22px;">
+								天津市河东区
+							</div>
+							<div class="clearfix"></div>
+						</div>
+						<div class="item1">
+							<span class="label">地址：</span>
+							<div class="fl"  style="width: 360px;height: 22px;">
+								友爱南里352号302
+							</div>
+							<div class="clearfix"></div>
+						</div>
+						<div class="item1">
+							<span class="label">手机：</span>
+							<div class="fl"  style="width: 360px;height: 22px;">
+								13659556598
+							</div>
+							<div class="clearfix"></div>
+						</div>
+						<div class="item1">
+							<span class="label">固定电话：</span>
+							<div class="fl"  style="width: 360px;height: 22px;">
+								13659556598
+							</div>
+							<div class="clearfix"></div>
+						</div>
+						<div class="item1">
+							<span class="label">电子邮箱：</span>
+							<div class="clearfix">
+								35416816846@qq.com
+							</div>
+							<div class="clearfix"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!--常用联系人 详细信息 结束-->
+		</div>
+		
+		<!--常用联系人 框体-->
+		<div class="contacts_1 " id="003">
+			<!--联系人姓名 左上角 以及右上角 删除按钮-->
+			<div class="contacts_name">
+				<h3>杨树春</h3>
+				<div class="extra">
+					<a onclick="alertDelAddressDiag(51871337);" class="del-btn" href="#none">删除</a>
+				</div>
+				<!--联系人姓名 左上角 以及右上角 删除按钮 结束-->
+			</div>
+			<!--常用联系人 框体 结束-->
+
+			<!--常用联系人 详细信息-->
+			<div class="contacts_INFO">
+				<div class="items new-items">
+					<div class="item-lcol">
+						<div class="item1">
+							<span class="label">姓名：</span>
+							<div class="fl"  style="width: 360px;height: 22px;">
+								杨树春
+							</div>
+							<div class="clearfix"></div>
+						</div>
+						<div class="item1">
+							<span class="label">所在地区：</span>
+							<div class="fl"  style="width: 360px;height: 22px;">
+								北京市朝阳区
+							</div>
+							<div class="clearfix"></div>
+						</div>
+						<div class="item1">
+							<span class="label">地址：</span>
+							<div class="fl"  style="width: 360px;height: 22px;">
+								望京SOHO A座1205
+							</div>
+							<div class="clearfix"></div>
+						</div>
+						<div class="item1">
+							<span class="label">手机：</span>
+							<div class="fl"  style="width: 360px;height: 22px;">
+								13659556598
+							</div>
+							<div class="clearfix"></div>
+						</div>
+						<div class="item1">
+							<span class="label">固定电话：</span>
+							<div class="fl"  style="width: 360px;height: 22px;">
+								13659556598
+							</div>
+							<div class="clearfix"></div>
+						</div>
+						<div class="item1">
+							<span class="label">电子邮箱：</span>
+							<div class="clearfix">
+								35416816846@qq.com
+							</div>
+							<div class="clearfix"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!--常用联系人 详细信息 结束-->
+		</div>
+		<div id="addressbg"></div>
+		<div class="thickbox" id="address" style="left: 445px; top: 200px; width: 762px; height: 450px;display: none;">
+			<div class="thickwrap" style="width: 760px;">
+				<div class="thicktitle" id="" style="width:740px"><span>添加寄件地址</span></div>
+				<div class="thickcon" id="" style="width: 740px; height: 490px; padding-left: 10px; padding-right: 10px;">
+					<div id="addressDiagDiv">
+
+						<div class="m" id="edit-cont">
+							<div class="mc">
+								<div class="form">
+									<div class="item">
+										<span class="label"><em>*</em>姓名：</span>
+										<div class="fl">
+											<input id="consigneeName" type="text" class="text" onblur="checkConsigneeName()">
+											<span id="consigneeNameNote" class="error-msg hide"></span>
+										</div>
+										<div class="clearfix"></div>
+									</div>
+									<div class="item">
+										<span class="label"><em>*</em>所在地区：</span>
+										<div class="fl">
+											<select id="provinceDiv" class="sele" onchange="loadCity()"><option>请选择</option><option value="1">北京</option><option value="2">上海</option><option value="3">天津</option><option value="4">重庆</option><option value="5">河北</option><option value="6">山西</option><option value="7">河南</option><option value="8">辽宁</option><option value="9">吉林</option><option value="10">黑龙江</option><option value="11">内蒙古</option><option value="12">江苏</option><option value="13">山东</option><option value="14">安徽</option><option value="15">浙江</option><option value="16">福建</option><option value="17">湖北</option><option value="18">湖南</option><option value="19">广东</option><option value="20">广西</option><option value="21">江西</option><option value="22">四川</option><option value="23">海南</option><option value="24">贵州</option><option value="25">云南</option><option value="26">西藏</option><option value="27">陕西</option><option value="28">甘肃</option><option value="29">青海</option><option value="30">宁夏</option><option value="31">新疆</option><option value="32">台湾</option><option value="84">钓鱼岛</option><option value="52993">港澳</option></select>
+											<select id="cityDiv" class="sele" onchange="loadCounty()"><option value="0">请选择</option><option value="72">朝阳区</option><option value="2800">海淀区</option><option value="2801">西城区</option><option value="2802">东城区</option><option value="2803">崇文区</option><option value="2804">宣武区</option><option value="2805">丰台区</option><option value="2806">石景山区</option><option value="2807">门头沟</option><option value="2808">房山区</option><option value="2809">通州区</option><option value="2810">大兴区</option><option value="2812">顺义区</option><option value="2814">怀柔区</option><option value="2816">密云区</option><option value="2901">昌平区</option><option value="2953">平谷区</option><option value="3065">延庆县</option></select>
+											<select id="countyDiv" class="sele" onchange="loadTown()"><option value="0">请选择</option></select>
+											<select id="townDiv" class="sele hide" onchange="fillTownName()" style="display: none;"></select>
+											<span class="error-msg" id="areaNote"></span>
+										</div>
+
+										<div class="clearfix"></div>
+									</div>
+									<div class="item">
+										<span class="label"><em>*</em>详细地址：</span>
+										<div class="fl">
+									
+											<input id="consigneeAddress" type="text" class="text text1" onblur="checkConsigneeAddress()">
+										</div>
+										<span class="error-msg" id="consigneeAddressNote"></span>
+										<div class="clearfix"></div>
+									</div>
+									<div class="item">
+										<div class="f1">
+											<span class="label"><em>*</em>手机号码：</span>
+											<input id="consigneeMobile" type="text" maxlength="11" class="text" onblur="checkMobile()">
+										</div>
+										<div class="f1"><span class="extra-span">或</span></div>
+										<div class="f1">
+											<span class="label">固定电话：</span>
+											<input id="consigneePhone" type="text" class="text" onblur="checkMobile()">
+											<span class="error-msg hide" id="consigneeMobileNote"></span>
+											<span class="clearfix"></span>
+										</div>
+										<div class="clearfix"></div>
+									</div>
+									<div class="item">
+										<span class="label">邮箱：</span>
+										<div class="fl">
+											<input id="consigneeEmail" type="text" class="text text1" maxlength="50" onblur="checkEmail()">
+											<span class="error-msg hide" id="emailNote"></span>
+										</div>
+										<div class="clearfix"></div>
+									</div>
+
+									<div class="btns">
+										<a href="#" onclick="addAddress();" class="e-btn btn-9 save-btn">保存收货地址</a>
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div><a href="#" class="thickclose" id="delBox" onclick="delBox()">×</a></div>
+		</div>
+		</div>
+	</body>
+	<script>
+		function alertAddAddressDiag(){
+			var address=document.querySelector('#address');
+			var addressbg=document.querySelector('#addressbg');
+				address.style.display='block';
+				addressbg.style.display='block';
+		}
+		function delBox(){
+			var address=document.querySelector('#address');
+			var addressbg=document.querySelector('#addressbg');
+			address.style.display='none';
+			addressbg.style.display='none';
+		}
+	</script>
+</html>

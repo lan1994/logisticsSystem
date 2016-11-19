@@ -14,6 +14,7 @@ import com.zhuoyue.dao.LoginTicketDAO;
 import com.zhuoyue.dao.UserDAO;
 import com.zhuoyue.dao.UserMessageDAO;
 import com.zhuoyue.model.CommonlyAddress;
+import com.zhuoyue.model.HostHolder;
 import com.zhuoyue.model.LoginTicket;
 import com.zhuoyue.model.User;
 import com.zhuoyue.model.UserMessage;
@@ -35,6 +36,8 @@ public class UserService {
 	@Autowired
 	CommonlyAddressDAO commonlyAddressDAO;
 	
+	@Autowired
+	HostHolder hostHolder;
 	public int selectAddressCountByUserId(int userId){
 		return commonlyAddressDAO.selectAddressCountByUserId(userId);
 	}
@@ -44,7 +47,7 @@ public class UserService {
 	}
 	
 	public int addAddress(CommonlyAddress commonlyAddress){
-		return commonlyAddressDAO.addRepertory(commonlyAddress);
+		return commonlyAddressDAO.addAddress(commonlyAddress);
 	}
 	
 	public List<CommonlyAddress> selectByUserId(int userId,int offset,int limit){
@@ -125,7 +128,12 @@ public class UserService {
 	}
 	
 	public void UpdateUserMessage(UserMessage userMessage){
+		int flag = userMessageDAO.isExist(userMessage.getUserid());
+		if(flag>0){
 		userMessageDAO.updateUserMessage(userMessage);
+		}else{
+			userMessageDAO.addUserMessage(userMessage);
+		}
 	}
 	
 	public String addTicket(int userid){
@@ -138,5 +146,24 @@ public class UserService {
 		ticket.setTicket(UUID.randomUUID().toString().replaceAll("-", ""));
 		loginTicketDAO.addTicket(ticket);
 		return ticket.getTicket();
+	}
+	
+	public Map<String,Object> deleteAddressById(int id){
+		Map<String, Object> map = new HashMap<String, Object>();
+		CommonlyAddress commonlyAddress = commonlyAddressDAO.selectById(id);
+		if(commonlyAddress==null){
+			map.put("msg", "不存在该地址");
+			return map;
+		}
+		if(commonlyAddress.getUserId()!=hostHolder.get().getId()){
+			map.put("msg", "您不能删除该内容");
+			return map;
+		}
+		int del = commonlyAddressDAO.deleteById(id);
+		if(del>0){
+			return map;
+		}
+		map.put("msg", "删除失败");
+		return map;
 	}
 }

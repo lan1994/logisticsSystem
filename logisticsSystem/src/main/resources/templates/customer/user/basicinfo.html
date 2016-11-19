@@ -1,0 +1,265 @@
+#parse("/customer/shared/customer_top.html")
+<script type="text/javascript" src="/scripts/js/jquery-1.6.2.js"></script>
+<script type="text/javascript" src="/scripts/user/basicinfo.js"></script>
+	<style>
+		body {
+			font-size: 12px;
+			font: 12px/150% Arial, Verdana, "\5b8b\4f53";
+			color: #666666;
+			line-height: 2.0;
+			margin: 0 auto;
+			background: #fff;
+		}
+		
+		.clearfix:after {
+			content: "clearfix";
+			display: block;
+			visibility: hidden;
+			height: 0;
+			clear: both;
+			overflow: hidden;
+		}
+		
+		.form .item:after {
+			content: ".";
+			display: block;
+			height: 0;
+			clear: both;
+			visibility: hidden;
+		}
+		
+		#main {
+			float: left;
+			width: 99.9%;
+			margin-left: -120px;
+			overflow: hidden;
+		}
+		
+		.mod-main {
+			padding: 10px;
+		 	background-color: #fff; 
+			margin-bottom: 20px;
+			margin:0 215px;
+		}
+		
+		.mod-main .mt {
+			display: inline-block;
+			display: block;
+			padding: 10px;
+		}
+		
+		.mod-main .mt .extra-l {
+			float: left;
+		}
+		
+		ul {
+			list-style: none;
+			display: block;
+			list-style-type: disc;
+			-webkit-margin-before: 1em;
+			-webkit-margin-after: 1em;
+			-webkit-margin-start: 0px;
+			-webkit-margin-end: 0px;
+			-webkit-padding-start: 40px;
+		}
+		
+		.mod-main .mt .extra-l li a {
+			display: inline-block;
+		}
+		
+		.mod-main .mt .extra-l li {
+			float: left;
+			padding-left: 20px;
+		}
+		
+		li {
+			list-style: none;
+		}
+		
+		.mod-main .mt .extra-l li a.curr {
+			padding-bottom: 0;
+			color: #e4393c;
+			border-bottom: 2px solid #e4393c;
+			font-weight: 700;
+			cursor: pointer;
+			text-decoration: none;
+		}
+		
+		.userset-lcol {
+			float: left;
+			width: 500px;
+		}
+		
+		.user-set {
+			background-color: #fff;
+			padding: 20px 5px 0 15px;
+		}
+		
+		.form .item {
+		
+			display: block;
+			margin-bottom: 20px;
+			line-height: 30px;
+		}
+		
+		.form .item span.label {
+			float: left;
+			height: 18px;
+			line-height: 18px;
+			padding: 6px 0;
+			width: 100px;
+			text-align: right;
+		}
+		
+		.fl {
+			float: left;
+		}
+		
+		.form em {
+			color: #e4393c;
+		}
+		
+		em {
+			font-style: normal;
+		}
+		
+		.ftx-05,
+		.ftx05 {
+			color: #005ea7;
+		}
+		
+		.btn-5:link,
+		.btn-5:visited,
+		{
+			color: #323333;
+			text-decoration: none;
+		}
+		
+		.btn-5,
+		.btn-6,
+		.btn-7,
+		.btn-8 {
+			background-color: #f5fbef;
+			background-image: linear-gradient(to bottom, #f5fbef 0, #eaf6e2 100%);
+			display: inline-block;
+			height: 18px;
+			line-height: 18px;
+			border: 1px solid #bfd6af;
+			padding: 2px 14px 3px;
+			color: #323333;
+    		text-decoration: none;
+		}
+	</style>
+<div class="maincontent"> 
+<div class="mod-main">
+			<div class="mt">
+				<ul class="extra-l">
+					<li class="fore-1"><a class="curr" href="#">基本信息</a></li>
+
+				</ul>
+				<div class="clearfix"></div>
+			</div>
+			<div class="mc">
+				<div class="user-set userset-lcol">
+					<div class="form">
+							<form action="/customer/host/updateUserMessage" method="post" id="form">
+						<div class="item">
+							<span class="label">真实名：</span>
+							<div class="fl">
+								<div>
+									<input type="text" name="name" value="$!vo.name"/>
+								</div>
+							</div>
+						</div>
+						<!-- <div class="item" id="aliasArea">
+							<span class="label"><em>*</em>登录名：</span>
+							<div class="fl" id="aliasBefore">
+								<strong>王一鸣</strong>
+								<a href="#" class="ftx-05 ml10" onclick="changeAliasName()" >修改</a>
+							
+								<div class="clearfix"></div>
+								<div class="prompt-06"><span id="aliasNameBefore_msg"></span></div>
+							</div>
+							<div class="fl" id="aliasAfter" style="display: none">
+								<input  type="text" class="itxt" maxlength="20" id="aliasName" name="aliasName" value="286449551">
+								<input type="hidden" id="hiddenAliasName" value="286449551">
+							
+								<div class="clearfix"></div>
+								<div class="prompt-06"><span id="aliasName_msg"></span></div>
+							</div>
+
+						</div> -->
+						<div class="item">
+							<span class="label"><em>*</em>登录名：</span>
+							<div class="fl">
+								<strong>$!vo.loginname</strong>
+							</div>
+						</div>
+						<div class="item">
+							<span class="label"><em>*</em>性别：</span>
+							<div class="fl" >
+								#if($vo.sex==1)
+								<input type="radio" name="sex" class="wlradio" value="0" ><label class="mr10">男</label>
+								<input type="radio" name="sex" class="wlradio" value="1" checked="checked"><label class="mr10">女</label>
+								#else
+								<input type="radio" name="sex" class="wlradio" value="0" checked="checked"><label class="mr10">男</label>
+								<input type="radio" name="sex" class="wlradio" value="1"><label class="mr10">女</label>
+								#end
+							</div>
+						</div>
+						<div class="item" >
+							<span class="label"><em>*</em>所在地区：</span>
+								<div class="fl">
+											<select id="provinceDiv" name="province" class="sele" >
+												#if($vo.provincecode)
+													<option value="$vo.provincecode">$vo.provincename</option>
+												#else
+													<option value="0">请选择</option>
+												#end
+												
+											</select>
+											<select id="cityDiv" name="city" class="sele" >
+												#if($vo.citycode)
+													<option value="$vo.citycode">$vo.cityname</option>
+												#else
+													<option value="0">请选择</option>
+												#end
+											</select>
+											<select id="countyDiv" name="area" class="sele" >
+												#if($vo.areacode)
+													<option value="$vo.areacode">$vo.areaname</option>
+												#else
+													<option value="0">请选择</option>
+												#end
+											</select>
+											<span class="error-msg" id="areaNote"></span>
+								</div>
+						</div>
+
+						<div class="item">
+							<span class="label">手机号：</span>
+							<div class="fl" >
+								<div>
+									<input type="text" name="mobile" value="$!vo.mobile"/>
+								</div>
+
+							</div>
+
+							<div class="clearfix"></div>
+						</div>
+
+						<div class="item">
+							<span class="label">&nbsp;</span>
+							<div class="fl">
+								<a  href="#" class="btn-5" onclick='$("#form").submit()'>提交</a>
+							</div>
+						</div>
+						</form>
+					</div>
+				</div>
+
+				<div class="clearfix"></div>
+			</div>
+		</div>
+</div>
+#parse("/customer/shared/customer_down.html")

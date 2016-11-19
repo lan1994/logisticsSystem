@@ -24,10 +24,14 @@ public interface UserMessageDAO {
 	@Select({"select ",SELECT_FIELDS," from ",TABLE_NAME," where user_id=#{userid}"})
 	UserMessage selectByUserId(int userid);
 	
+	@Select({"select count(*) from ",TABLE_NAME," where user_id=#{userid}"})
+	int isExist(int userId);
+	
 	@Update({"update ",TABLE_NAME," set name = #{name},mobile = #{mobile},sex = #{sex},"
 			+ "province = #{province},city = #{city},area = #{area} where user_id=#{userid}"})
 	void updateUserMessage(UserMessage userMessage);
 	
 	@Delete({"delete from ",TABLE_NAME,"where id=#{id}"})
 	void deleteById(int id);
+	
 }

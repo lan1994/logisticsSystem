@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>后台管理页面</title>
+#parse("/shared/manager_headtitle.html")
+<link rel="stylesheet" type="text/css" href="/styles/manager/stock/instock.css" />
+<script type="text/javascript" src="/scripts/js/jquery-1.6.2.js"></script>
+<script type="text/javascript" src="/scripts/stock/stock.js"></script>
+<body>
+	#parse("/shared/manager_head.html")
+	<div class="manager_main">
+		<div class="content">
+			<div class="leftbox">
+				<!-- Begin of  #contentlist -->
+				<div id="pageIntro">
+							<div id="success" class="hidden"><img src="/images/stock/actionsuccess.png"/></div>
+                            <div id="error" class="hidden"><img src="/images/stock/actionerror.png"/></div>
+							<div style="margin:20px auto">
+								<form action="" method="post">
+										<div style="margin:0 auto;width:600px"">
+											<label style="font-size:25px;">查询订单号:</label> 
+											<input type="text" name="ordernumber" id="ordernumber" style="width:300px; height:30px;font-size:25px;"/>
+											<input type="button" id="bt" style="width:100px; height:30px;font-size:20px;" value="查询"/>
+										</div>
+								</form>	 
+							</div>
+							
+						<div class="contentBox">
+							<div class="contentBoxTop">
+								<h3>
+                    订单信息</h3>
+							</div>
+							<div class="innerContent" style="height:500px">
+										<div id="orderMessage">
+											<table class="sTable">
+												<tr>
+													<th>
+														<input id="checkall" type="checkbox"  class="checkbox"/>
+													</th>
+													<th width="5%">序号</th>
+													<th width="10%">订单号</th>
+													<th width="7%">状态</th>
+													<th width="5%">用户名</th>
+													<!-- <th width="10%">发货人电话</th> -->
+													<th width="8%">收货人电话</th>
+													<th width="18%">发货地</th>
+													<th width="18%">目的地</th> 
+													<th width="10%">下一站</th>
+													<th width="10%"><input  type="button" value="批量出库" class="outstockall"></th>
+													<th width="10%">手动出库</th>
+												</tr>
+									  	 #if($count>0)
+										 	#set($i=1)  
+											#foreach($vo in $vos)
+												<tr class="oddRow">
+													<input type="hidden" value="$vo.id"/>
+													<td class="check_list">
+														<input type="checkbox" class="checkbox" value="$vo.id" name="id"/>
+													</td>
+													<td class="list_title">$i</td>
+													<td class="list_title">$vo.ordernumber</td>
+													<td class="list_title">$vo.status</td>
+													<td class="list_title">$vo.username</td>
+													<td class="list_title">$vo.toMobile</td>
+													<td class="list_title">$vo.from</td>
+													<td class="list_title">$vo.to</td>
+													<td class="list_title">$!vo.next</td>
+													<td class="list_title"><input  type="button" value="自动出库" class="outstock"></td>
+													<td class="list_title">
+														<form action="/admin/outstockpage" method="post">
+															<input type="hidden" value="$vo.id" name="repertoryId"/>
+															<input  type="submit" value="手动出库">
+														</form>
+													</td>
+												</tr>
+												#set($i=$i+1)  
+											#end
+										#end   
+											</table>
+										</div>
+							</div>
+						</div>
+				<!--contentBox end  -->
+				</div>
+			</div>
+			#parse("/shared/manager_siderbar.html")
+		</div>
+	</div>
+	 #parse("/shared/manager_footer.html")
+</body>
+</html>

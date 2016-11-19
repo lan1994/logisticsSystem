@@ -1,0 +1,19 @@
+.manager_main .content .leftbox #pageIntro {
+	position: relative;
+}
+.manager_main .content .leftbox #pageIntro #success {
+	position: absolute;
+	left: 400px;
+	top: 160px;
+}
+.manager_main .content .leftbox #pageIntro #error {
+	position: absolute;
+	left: 400px;
+	top: 160px;
+}
+.hidden{
+	display:none;
+}
+.leftfloatlxx{
+	float:left;
+}
