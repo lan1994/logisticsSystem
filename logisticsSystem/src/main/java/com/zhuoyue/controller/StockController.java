@@ -1,4 +1,5 @@
 package com.zhuoyue.controller;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -372,18 +373,20 @@ public class StockController {
 	}
 	
 	@RequestMapping("/customer/queryorder")
-	public String queryorder(@RequestParam("orderId") int orderId,Model model){
+	public String queryorder(@RequestParam(value="orderId",required=false,defaultValue="0") int orderId,Model model){
 		List<Repertory> list = repertoryService.selectByOrderId(orderId);
-		if(list==null||list.size()==0){
+		if(orderId==0||list==null||list.size()==0){
 			model.addAttribute("msg","没有找到该订单的相关信息");
+			model.addAttribute("code", 0);
 			return "/customer/index";
 		}
 		List<ViewObject> vos = new ArrayList<ViewObject>();
 		for(Repertory repertory:list){
 			ViewObject vo = new ViewObject();
-			vo.set("date",repertory.getDate());
+			SimpleDateFormat format = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
+			vo.set("date",format.format(repertory.getDate()));
 			StockStatus stockStatus = StockStatus.valueof(repertory.getStatus());
-			vo.set("msg",stockStatus.getValueString());
+			vo.set("status",stockStatus.getValueString());
 			SortStation nowstation = sortStationDAO.selectById(repertory.getSortstationId());
 			vo.set("nowstation", nowstation.getStationName());
 			SortStation nextsSortStation = sortStationDAO.selectById(repertory.getNextStationCode());
@@ -394,7 +397,14 @@ public class StockController {
 			}
 			vos.add(vo);
 		}
+		Order order = orderDAO.getByNumber(orderId);
+		CommonlyAddress from = userService.selectAddressById(order.getSendaddressId());
+		CommonlyAddress to = userService.selectAddressById(order.getReaddressId());
 		model.addAttribute("vos", vos);
+		model.addAttribute("code", 1);
+		model.addAttribute("ordernumber", orderId);
+		model.addAttribute("from", areaService.selectCityByCode(from.getCity()).getName());
+		model.addAttribute("to", areaService.selectCityByCode(to.getCity()).getName());
 		return "/customer/index";
 	}
 }

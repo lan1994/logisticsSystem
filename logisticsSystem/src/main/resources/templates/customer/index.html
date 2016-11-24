@@ -1,5 +1,184 @@
 #parse("/customer/shared/customer_top.html")
-<div class="maincontent">
+<style>
+		body {
+				text-align: center;
+			}
 			
+			.orderlist-search {
+				margin: 0 auto;
+				height: 50px;
+				width: 700px;
+			}
+			
+			.form-wrap {
+				border-radius: 3px;
+			}
+			
+			.tokenfield {
+				padding-right: 0;
+			}
+			
+			.tokenfield .token-input {
+				float: left;
+				min-width: 90px;
+				width: 530px;
+				background: none;
+				line-height: 32px;
+				font-size: 14px;
+				box-shadow: none;
+				height: 32px;
+				padding: 0;
+			}
+			
+			.primary-button {
+				color: white;
+				background-color: #eb1d21;
+				line-height: 30px;
+				padding: 0;
+				padding-left: 2px;
+				width: 120px;
+				font-size: 14px;
+				letter-spacing: 2px;
+				border-radius: 3px;
+				text-align: center;
+				border: 1px solid #B51919;
+				position: relative;
+				transition: top .2s;
+				top: 3px;
+				left: 45px;
+				float: left;
+			}
+			
+			.deliveries {
+				border: 1px solid #B7B7B7;
+				width: 700px;
+				height: auto;
+				margin: 0 auto;
+				padding: 0;
+				font-size: 12px;
+				font-family: "Microsoft Yahei", Arial, Helvetica, sans-serif, "黑体";
+				color: #666666;
+				vertical-align: baseline;
+				white-space: nowrap;
+				box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
+				border-bottom: 1px solid #ccc;
+			}
+		}
+		.delivery {
+			padding: 0 !important;
+		}
+		.delivery .delivery-brief .locations {
+			font-size: 16px;
+			font-family: "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+			line-height: 25px;
+		}
+		.delivery .delivery-brief .delivery-content {
+			line-height: 38px;
+			font-size: 14px;
+			font-family: "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+		}
+		.delivery .delivery-brief .last-update .time {
+			width: 130px;
+		}
+		.status-update-tab {
+			background-color: #f6f6f6;
+			padding: 5px 25px;
+			font-size: 10px;
+			color: #333;
+			position: relative;
+			margin: 0 5px 0 0;
+			border-left: 5px solid #F00;
+			height: 10px;
+		}
+		.status-toggle tbody {
+			display: table-row-group;
+			vertical-align: middle;
+			border-color: inherit;
+		}
+		.status-toggle tr {
+			display: table-row;
+			vertical-align: inherit;
+			border-color: inherit;
+		}
+		.status-toggle td {
+			text-align: left;
+			font-weight: normal;
+			vertical-align: middle;
+		}
+		.delivery .delivery-detail .tab-details .status-updates .status-update .time {
+			width: 70px;
+			text-align: right;
+			vertical-align: top;
+		}
+		.delivery .delivery-detail .tab-details .status-updates .status-update .update {
+			/* padding: 0 20px;
+			word-break: break-word; */
+			width: 70px;
+			text-align: left;
+			vertical-align: top;
+		}
+		.delivery .delivery-detail .tab-details .status-updates .status-update .mudidi {
+			padding: 0 5px 0 0;
+			word-break: break-word;
+		}
+		ul li {
+			list-style-type: none;
+		}
+		</style>
+<div class="maincontent">
+	 <div style="padding:20px 0">
+			<!--快递单号查询-->
+		<div class="orderlist-search">
+			<div class="form-wrap">
+				<div class="tokenfield">
+				<form action="/customer/queryorder" method="post">
+					<input type="text" class="token-input" placeholder="在此输入运单号进行查询" id="01" name="orderId" tabindex="0">
+					<button id="002" type="submit" class="primary-button">查询</button>
+				</form>
+				</div>
+
+			</div>
+
+		</div>
+		<!--快递单详情-->
+		#if($code==0)
+			$!{msg}
+		#elseif($code==1)
+		<div class="deliveries">
+			<div class="main-content-row delivery">
+				<div class="delivery-brief" id="502868684563">
+					<!--快递始发地以及送达地点-->
+					<div class="locations">${from}<span>--></span>${to}</div>
+					<!--订单号-->
+					<div class="delivery-content">订单号：<span class="number">${ordernumber}</span>
+					</div>
+					
+					<div class="delivery-detail top-gray-gradient">
+
+						<ul class="tab-details display-none" style="display: block;">
+							<li data-detail="waybill-status" class="status-updates">
+								<div data-toggle="status-toggle" class="status-update-box">
+									<div class="status-update-tab"></div>
+									<!--灰色条状带-->
+									<table>
+										<tbody>
+										#foreach($vo in $vos)
+											<tr class="status-update">
+												<td class="time">${vo.date}</td>
+												<td class="update">【${vo.nowstation}】，${vo.status},下一站<font color="red">【${vo.next}】</font></td>
+											</tr>
+										#end
+										</tbody>
+									</table>
+								</div>
+
+						</ul>
+					</div>
+				
+				#end
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
 #parse("/customer/shared/customer_down.html")

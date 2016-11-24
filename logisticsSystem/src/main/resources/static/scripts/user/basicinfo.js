@@ -5,7 +5,9 @@ $(document).ready(function(){
 		initselect();
 		}
 	});
-	
+	$("#provinceDiv").click(function(){
+		initselect();
+	});
 	$("#provinceDiv").change(function(){
 		initCity($(this).val());
 	});

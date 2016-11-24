@@ -5,7 +5,7 @@ package com.zhuoyue.util;
  * */
 public enum StockStatus {
 	ONTHEWAY(0, "已出库，在运送途中"), 
-	ARRIVAL(1, "出库，并且已经到达下一站"), 
+	ARRIVAL(1, "出库已到达"), 
 	INSTOCK(2, "在库");
 	private int value;
 	private String valueString;
