@@ -1,5 +1,6 @@
 package com.zhuoyue.controller;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -17,10 +18,12 @@ import com.zhuoyue.model.Area;
 import com.zhuoyue.model.City;
 import com.zhuoyue.model.CommonlyAddress;
 import com.zhuoyue.model.HostHolder;
+import com.zhuoyue.model.Order;
 import com.zhuoyue.model.Province;
 import com.zhuoyue.model.UserMessage;
 import com.zhuoyue.model.ViewObject;
 import com.zhuoyue.service.AreaService;
+import com.zhuoyue.service.OrderService;
 import com.zhuoyue.service.UserService;
 import com.zhuoyue.util.JsonUtil;
 import com.zhuoyue.util.LogisticsSystemUtil;
@@ -35,6 +38,8 @@ HostHolder hostHolder;
 UserService userService;
 @Autowired
 AreaService areaService;
+@Autowired
+OrderService orderService;
 
 	@RequestMapping("/customer/host/addresspage")
 	//@ResponseBody
@@ -170,5 +175,6 @@ AreaService areaService;
 			return JsonUtil.getJSONString(0, map);
 		}
 		return JsonUtil.getJSONString(1, String.valueOf(id));
+		
 	}
 }

@@ -221,7 +221,7 @@ a {
 #index_bg{
 	/*border-top: 1px solid #DDDDDD;*/
 	background: url(/images/customer_img/index_bg.png) top center no-repeat;
-	height: 300px;
+	height: auto;
 	width: 100%;
 	/*margin-top: 2px;*/
 }

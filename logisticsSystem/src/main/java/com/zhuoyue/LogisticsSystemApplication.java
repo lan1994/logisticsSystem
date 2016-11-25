@@ -9,4 +9,5 @@ public class LogisticsSystemApplication{
     public static void main(String[] args) {
         SpringApplication.run(LogisticsSystemApplication.class, args);
     }
+
 }

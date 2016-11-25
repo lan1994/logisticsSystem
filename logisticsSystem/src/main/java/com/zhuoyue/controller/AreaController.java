@@ -13,9 +13,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.zhuoyue.dao.SortStationDAO;
 import com.zhuoyue.model.Area;
 import com.zhuoyue.model.City;
+import com.zhuoyue.model.CommonlyAddress;
 import com.zhuoyue.model.Province;
 import com.zhuoyue.model.SortStation;
 import com.zhuoyue.service.AreaService;
+import com.zhuoyue.service.UserService;
 import com.zhuoyue.util.JsonUtil;
 /*
  * @author 兰心序
@@ -24,6 +26,8 @@ import com.zhuoyue.util.JsonUtil;
 public class AreaController {
 	@Autowired
 	AreaService areaService;
+	@Autowired
+	UserService userService;
 	@Autowired
 	SortStationDAO sortStationDAO;
 	
@@ -94,4 +98,7 @@ public class AreaController {
 		}
 		   return JsonUtil.getJSONString(1, ls);
 	}
+	
+
+	
 }

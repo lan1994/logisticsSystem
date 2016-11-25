@@ -1,0 +1,98 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link href="<%=basePath%>content/bootstrap/bootstrap.min.css"
+	rel="stylesheet">
+</head>
+<meta charset="UTF-8">
+<title>订单管理</title>
+<!-- <jsp:include page="../shared/manager_headtitle.jsp"></jsp:include> -->
+#parse("/shared/manager_headtitle.html")
+<body>
+	<!-- <jsp:include page="../shared/manager_head.jsp"></jsp:include> -->
+	#parse("/shared/manager_head.html")
+	<div class="manager_main">
+		<div class="content">
+			<div class="leftbox">
+				<!-- Begin of  #contentlist -->
+				<div class="contentBox">
+					<div class="contentBoxTop">
+						<h3>订单详情</h3>
+					</div>
+					<div class="innerContent">
+						<table class="sTable" style="width=200px;">
+							#foreach($info in $vos)
+						
+							
+							<tr>
+								<th class="list_time" style="width=50px";>订单号：</th>
+								<th class="oddRow">$info.orderNumber</th>
+							</tr>
+							<tr>
+								<th class="list_time">发货人：：</th>
+								<th class="oddRow">$info.username</th>
+							</tr>
+								<tr>
+								<th class="list_time">发货人联系方式：</th>
+								<th class="oddRow">$info.mobile</th>
+							</tr>
+							<tr>
+								<th class="list_time">发货地址：</th>
+								<th class="oddRow">$info.sendaddress</th>
+							</tr>
+							
+							</tr>
+								<tr>
+								<th class="list_time">收货人：</th>
+								<th class="oddRow">$info.receivename</th>
+							</tr>
+							</tr>
+								<tr>
+								<th class="list_time">收货人联系方式：</th>
+								<th class="oddRow">$info.receivephone</th>
+							</tr>
+							<tr>
+								<th class="list_time">收货地址：</th>
+								<th class="oddRow">$info.readdress</th>
+							</tr>
+							<tr>
+								<th class="list_time">订单时间：</th>
+								<th class="oddRow">$info.orderSchedule</th>
+							</tr>
+							<tr>
+								<th class="list_time">订单状态：</th>
+								<th class="oddRow">$info.msg</th>
+							</tr>
+							<td class="editItem">
+									<ul class="editlist">
+									 	<li class="iconEdit"><a
+											href="../manageorder">返回</a></li>
+									</ul>
+								</td>
+								<td class="editItem">
+									<ul class="editlist">
+									 	<li class="iconEdit"><a
+											href="../updateorder/$info.orderNumber">修改</a></li>
+										<li class="iconDel"><a
+											onclick="return confirm('您确认要删除当前数据吗？')"
+											href="../deletorder/$info.orderNumber">删除</a></li>
+									</ul>
+								</td>
+								
+					#end
+						</table>	
+						<!-- End of  #contentlist -->
+					</div>		
+				</div>
+
+				<!-- End of  #contentlist -->
+
+			</div>
+
+			#parse("/shared/manager_siderbar.html")
+		</div>
+	</div>
+	#parse("/shared/manager_footer.html")
+</body>
+</html>

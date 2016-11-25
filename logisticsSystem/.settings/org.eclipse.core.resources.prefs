@@ -4,6 +4,7 @@ encoding//src/main/resources=UTF-8
 encoding//src/main/resources/static/styles/customer/managerbass.css=UTF-8
 encoding//src/main/resources/static/styles/manager/manager.css=UTF-8
 encoding//src/main/resources/templates/customer/index.html=UTF-8
+encoding//src/main/resources/templates/customer/order/insertorder.html=UTF-8
 encoding//src/main/resources/templates/customer/shared/customer_down.html=UTF-8
 encoding//src/main/resources/templates/customer/user/address.html=UTF-8
 encoding//src/main/resources/templates/customer/user/basicinfo.html=UTF-8

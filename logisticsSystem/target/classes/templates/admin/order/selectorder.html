@@ -1,0 +1,52 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link href="<%=basePath%>content/bootstrap/bootstrap.min.css"
+	rel="stylesheet">
+</head>
+<meta charset="UTF-8">
+<title>订单管理</title>
+<!-- <jsp:include page="../shared/manager_headtitle.jsp"></jsp:include> -->
+#parse("/shared/manager_headtitle.html")
+<body>
+	<!-- <jsp:include page="../shared/manager_head.jsp"></jsp:include> -->
+	#parse("/shared/manager_head.html")
+	<div class="manager_main">
+		<div class="content">
+			<div class="leftbox">
+				<!-- Begin of  #contentlist -->
+				<div class="contentBox">
+					<div class="contentBoxTop">
+						<h3>查询订单</h3>
+					</div>
+					<div class="innerContent">
+						<form action="/admin/orders/selectorderbynum" method="post">
+							<div style="margin:0 auto;width:600px"">
+								<div style="margin:0 auto;width:600px"">
+									<label style="font-size:25px;">订单号:</label> <input type="text"
+										name="orderNumber"  id="orderNumber"
+										style="width:350px; height:30px;font-size:25px;" />
+									<button id="bt"
+										style="width:100px; height:30px;font-size:20px;">确认</button>
+								</div>
+							</div>
+						</form>
+						<!-- End of  #contentlist -->
+					</div>
+				</div>
+
+				<!-- End of  #contentlist -->
+
+			</div>
+
+			<!-- <jsp:include page="../shared/manager_siderbar.jsp"></jsp:include> -->
+			#parse("/shared/manager_siderbar.html")
+		</div>
+	</div>
+
+
+	<!-- <jsp:include page="../shared/manager_footer.jsp"></jsp:include> -->
+	#parse("/shared/manager_footer.html")
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link href="<%=basePath%>content/bootstrap/bootstrap.min.css"
+	rel="stylesheet">
+
+</head>
+<meta charset="UTF-8">
+<title>订单管理</title>
+<!-- <jsp:include page="../shared/manager_headtitle.jsp"></jsp:include> -->
+#parse("/shared/manager_headtitle.html")
+<body>
+    
+	<!-- <jsp:include page="../shared/manager_head.jsp"></jsp:include> -->
+	#parse("/shared/manager_head.html")
+	<div class="manager_main">
+		<div class="content">
+			<div class="leftbox">
+				<!-- Begin of  #contentlist -->
+				<div class="contentBox">
+					<div class="contentBoxTop">
+						<h3>订单列表  </h3>    
+						
+					</div>
+					<div class="innerContent">
+						<table class="sTable" style="width=100px;">
+							<tr>
+								<th class="list_time">订单号</th>
+								<th class="list_time">发件人</th>
+								<th class="list_time">订单时间</th>
+							</tr>
+							#foreach( $info in $lists)
+								<tr class="oddRow">
+								<td class="list_time">$info.orderNumber</td>
+								<td class="list_time">$info.userId</td>
+								<td class="list_time">$info.orderSchedule</td>
+								<td class="editItem">
+									<ul class="editlist">
+									    <li class="iconArrow"><a
+											href="../orders/showorder/$info.orderNumber">查看</a></li>
+										<li class="iconEdit"><a
+											href="../orders/updateorder/$info.orderNumber">修改</a></li>
+										<li class="iconDel"><a
+											onclick="return confirm('您确认要删除当前数据吗？')"
+											href="../orders/deletorder/$info.orderNumber">删除</a></li>
+											
+											
+									</ul>
+								</td>
+							</tr>
+							#end
+						
+						</table>
+						<!-- End of  #contentlist -->
+					</div>
+				</div>
+
+				<!-- End of  #contentlist -->
+
+			</div>
+
+			<!-- <jsp:include page="../shared/manager_siderbar.jsp"></jsp:include> -->
+			#parse("/shared/manager_siderbar.html")
+		</div>
+	</div>
+
+
+	<!-- <jsp:include page="../shared/manager_footer.jsp"></jsp:include> -->
+	#parse("/shared/manager_footer.html")
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link href="<%=basePath%>content/bootstrap/bootstrap.min.css"
+	rel="stylesheet">
+	<script type="text/javascript" src="/scripts/js/jquery-1.6.2.js"></script>
+<script type="text/javascript" src="/scripts/order/address.js"></script>
+</head>
+<meta charset="UTF-8">
+<title>订单管理</title>
+<!-- <jsp:include page="../shared/manager_headtitle.jsp"></jsp:include> -->
+#parse("/shared/manager_headtitle.html")
+<body>
+	<!-- <jsp:include page="../shared/manager_head.jsp"></jsp:include> -->
+	#parse("/shared/manager_head.html")
+	<div class="manager_main">
+		<div class="content">
+			<div class="leftbox">
+				<!-- Begin of  #contentlist -->
+				<div id="pageIntro">
+					<h2>修改订单</h2>
+					<div class="innerContent">
+						<form action="/admin/orders/updateorder" method="post">
+							<div style="margin:0 auto;width:600px"">
+								#foreach( $info in $lists) <label style="font-size:25px;">订单号:
+								<input
+									type="text" name="orderNumber" id="orderNumber"
+									style="width:150px; height:30px;font-size:25px;"  value=" $info.orderNumber "  /></label><br />
+								<br /> <label style="font-size:25px;">收 件 姓名:</label><input
+									type="text" name="name" id="name"
+									style="width:150px; height:30px;font-size:25px;" /><br /> <br />
+								<label style="font-size:25px;">收件人电话:<input type="text"
+									name="mobile" id="mobile"
+									style="width:150px; height:30px;font-size:25px;" /></label> <br>
+								<br /> <label style="font-size:25px;">收件人地址:</label>
+								 <select id="provinceDiv" name="province" class="sele" onchange="loadCity()">
+								 <option value="0">请选择</option>
+								 </select>
+								  <select id="cityDiv" name="city" class="sele" onchange="loadCounty()">
+								  <option value="0">请选择</option>
+								  </select> 
+								  <select id="countyDiv" name="area" class="sele" onchange="loadTown()">
+								  <option value="0">请选择</option>
+								  </select>
+								<br> <br><label style="font-size:25px;">详细地址:<input type="text"
+									name="detaiaddress" id="detaiaddress"
+									style="width:150px; height:30px;font-size:25px;" /></label> <br>
+
+
+
+								<button id="bt" style="width:100px; height:30px;font-size:20px;">确认修改</button>
+							</div>
+							#end
+						</form>
+					</div>
+				</div>
+			</div>
+
+
+
+
+
+
+			#parse("/shared/manager_siderbar.html")
+		</div>
+	</div>
+
+
+	#parse("/shared/manager_footer.html")
+</body>
+</html>
