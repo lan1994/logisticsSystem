@@ -20,6 +20,23 @@ public CommonlyAddress(String name, int userId, String mobile, int province,
 	this.area = area;
 	this.detailAddress = detailAddress;
 }
+
+//ruan
+public CommonlyAddress( int id,String name, int userId, String mobile, int province,
+		int city, int area, String detailAddress) {
+	this.id=id;
+	this.name = name;
+	this.userId = userId;
+	this.mobile = mobile;
+	this.province = province;
+	this.city = city;
+	this.area = area;
+	this.detailAddress = detailAddress;
+}
+
+
+
+
 public String getDetailAddress(){
 	return detailAddress;
 }

@@ -22,11 +22,15 @@ public interface OrderDAO {
     
 	//获取所有的订单信息---管理员
 	@Select({"select  * from orders"})
-   List<Order>  getAllOrder();
+    List<Order>  getAllOrder();
+	
+	//按用户userid和状态获取订单
+	@Select({"select  * from orders where timeliness = 1 and state=#{state} and userid=#{userid}"})
+	List<Order>  getOrdrById( @Param("userid") int userid,@Param("state") int state );
 	
 	//按用户userid获取订单
-	@Select({"select  * from orders where timeliness = 1 and state= 0 and userid=#{userid}"})
-	List<Order>  getByUserId( @Param("userid") int userid,@Param("state") int state );
+	@Select({"select  * from orders where timeliness = 1  and userid=#{userid}"})
+	List<Order>  getAllOrdrById( @Param("userid") int userid);
 	
 	//通过订单号查询
 	@Select({"select  * from orders where  orderNumber=#{orderNumber}"})
@@ -40,15 +44,15 @@ public interface OrderDAO {
 	int addOrder(Order order);
 	
 	//作废     修改前的订单 将timeless改为0
-	@Update({"update orders set timeliness = #{timeliness} where orderNumber=#{orderNumber}"})
-	int changTimeLiness(int ordernumber);
+	@Update({"update orders set timeliness = 0 where orderNumber=#{orderNumber}"})
+	int changTimeLiness(long ordernumber);
 	
 	//订单完成
-	@Update({"update orders set timeliness = #{timeliness} where ordernumber=#{ordernumber}"})
-	int finishByNumber(int ordernumber);
+	@Update({"update orders set state = 1 where ordernumber=#{ordernumber}"})
+	int finishByNumber(long ordernumber);
 			
 	//通过订单号删除
 	@Delete({"delete from orders where orderNumber=#{orderNumber}"})
-	int deleteByNumber(int orderNumber);
+	int deleteByNumber(long orderNumber);
 	
 }

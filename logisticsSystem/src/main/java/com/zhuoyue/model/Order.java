@@ -69,7 +69,7 @@ public class Order {
 	}
 
 	public void setTimeliness(int timeliness) {
-		this.timeliness = 1;
+		this.timeliness = timeliness;
 	}
 
 	public int getState() {
@@ -77,7 +77,7 @@ public class Order {
 	}
 
 	public void setState(int state) {
-		this.state = 0;
+		this.state = state;
 	}
 
 	//获取时间

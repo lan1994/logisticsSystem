@@ -158,7 +158,11 @@
 						<ul class="tab-details display-none" style="display: block;">
 							<li data-detail="waybill-status" class="status-updates">
 								<div data-toggle="status-toggle" class="status-update-box">
-									<div class="status-update-tab"></div>
+									<div class="status-update-tab">
+										#if($arrival==1)
+											<center style="color:red">用户已签收</center>
+										#end
+									</div>
 									<!--灰色条状带-->
 									<table>
 										<tbody>

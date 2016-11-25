@@ -37,8 +37,16 @@ public interface CommonlyAddressDAO {
 	public int addAddress(CommonlyAddress commonlyAddress);
 	
 	@Update({"update ",TABLE_NAME," set name=#{name},mobile=#{mobile},province=#{province},"
-			+ "city=#{city},area=#{area},detailaddress=#{detailaddress}"})
+			+ "city=#{city},area=#{area},detailaddress=#{detailAddress}"})
 	public void updateAddress(CommonlyAddress commonlyAddress);
+	
+	
+	
+	//ruan 管理员后台修改订单中对应的常用收件人信息
+	@Update({"update ",TABLE_NAME," set name=#{name},mobile=#{mobile},province=#{province},"
+			+ "city=#{city},area=#{area},detailaddress=#{detailAddress}"+"where id=#{id}"})
+	public void updateCommonlyAddress(CommonlyAddress commonlyAddress);
+      
 	
 	@Delete({"delete from ",TABLE_NAME," where id=#{id}"})
 	public int deleteById(int id);

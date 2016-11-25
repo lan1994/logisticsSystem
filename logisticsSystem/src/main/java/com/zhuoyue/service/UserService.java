@@ -46,6 +46,11 @@ public class UserService {
 		commonlyAddressDAO.updateAddress(commonlyAddress);
 	}
 	
+	public void updateCommonlyAddress(CommonlyAddress commonlyAddress
+			){
+		commonlyAddressDAO.updateCommonlyAddress(commonlyAddress);
+	}
+	
 	public int addAddress(CommonlyAddress commonlyAddress){
 		return commonlyAddressDAO.addAddress(commonlyAddress);
 	}
@@ -135,6 +140,9 @@ public class UserService {
 			userMessageDAO.addUserMessage(userMessage);
 		}
 	}
+	
+	
+	
 	
 	public String addTicket(int userid){
 		LoginTicket ticket = new LoginTicket();

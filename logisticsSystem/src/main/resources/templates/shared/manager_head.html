@@ -7,13 +7,11 @@
 		</div>
 	</div>
 	<div class="manager_nav_bg">
-		<div class="manager_nav">
-			<!-- <ul id="menu">
-				<c:forEach var="menuinfo" items="${menulist}">
-					<li><a href="${menuinfo.menuPath}"><c:out
-								value="${menuinfo.menuContent}" /></a></li>
-				</c:forEach>
-			</ul> -->
-			
+		<div class="manager_nav">  
+			<ul id="menu">
+			#foreach($m in $menulist)  
+                <li><a href="/$!{m.menuPath}?id=$!{m.id}">$!m.menuContent</a></li>  
+            #end
+			</ul>
 		</div>
 	</div>

@@ -6,11 +6,10 @@
 		</div>
 		<div class="rightContent">
 			<ul id="sidebarLinks">
-				<!-- <c:forEach var="menuinfo" items="${siderlist}">
-					<li><a href="${menuinfo.menuPath}"><c:out
-								value="${menuinfo.menuContent}" /></a></li>
-				</c:forEach> -->
-			</ul>
+				#foreach($s in $siderlist)  
+                    <li><a href="/$!{s.menuPath}?id=$!{s.parentmenuId}">$!s.menuContent</a></li>  
+                #end
+			</ul>  
 		</div>
 	</div>
 </div>

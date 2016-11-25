@@ -402,6 +402,11 @@ public class StockController {
 		model.addAttribute("ordernumber", orderId);
 		model.addAttribute("from", areaService.selectCityByCode(from.getCity()).getName());
 		model.addAttribute("to", areaService.selectCityByCode(to.getCity()).getName());
+		if(order.getState()==1){
+			model.addAttribute("arrival", 1);
+		}else{
+			model.addAttribute("arrival", 0);	
+		}
 		return "/customer/index";
 	}
 }
