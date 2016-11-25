@@ -3,7 +3,7 @@ package com.zhuoyue.model;
  * @author 王璇
  */
 public class MenuInfo {
-	private int id;
+	private int id;   
     private String menuContent;
     private String menuPath;
     private int menuOrder;

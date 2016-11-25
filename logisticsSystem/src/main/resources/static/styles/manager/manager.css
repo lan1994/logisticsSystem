@@ -106,7 +106,7 @@ ul#menu li a
     color: #5f5845; /* 导航默认字体颜色*/
 }
 
-ul#menu li a:hover /* 鼠标路过的样式*/
+ul#menu li a:hover /* 鼠标路过的样式*/   
 {
     /* 鼠标路过的样式background-image: url(images/manager_nav_hover.png);*/
     background-color: #FFFFFF;

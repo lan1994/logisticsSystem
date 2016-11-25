@@ -13,7 +13,7 @@ import com.zhuoyue.model.MenuInfo;
 
 @Service
 public class MenuService {
-	@Autowired
+	@Autowired   
 	MenuDAO menuDAO;   
 	
 	//检索顶部导航标题
@@ -27,5 +27,16 @@ public class MenuService {
    	 List<MenuInfo> siderlist=menuDAO.getSecondMenu(parentMenu_id);
    	 return siderlist;
     }
+    
+    //根据菜单路径检索菜单id
+    public int getMenuId(String menuPath){
+    	return menuDAO.getMenuId(menuPath);
+    }
+    
+    //根据菜单路径检索parentMenu_id
+    public int getParentMenu_id(String menuPath){
+    	return menuDAO.getParentMenu_id(menuPath);
+    }
+    
 
 }
