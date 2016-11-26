@@ -18,6 +18,7 @@ import com.zhuoyue.model.HostHolder;
 import com.zhuoyue.model.LoginTicket;
 import com.zhuoyue.model.User;
 import com.zhuoyue.model.UserMessage;
+import com.zhuoyue.model.ViewAdminInfo;
 import com.zhuoyue.util.LogisticsSystemUtil;
 /*
  * @author 兰心序
@@ -156,6 +157,19 @@ public class UserService {
 		return ticket.getTicket();
 	}
 	
+	public List<UserMessage> getAdminInfo(int uright,int cityCode){		
+		return userMessageDAO.getAdminInfo(uright,cityCode);		
+	}
+	
+	
+	public List<ViewAdminInfo> getAdminAll(){
+		return userMessageDAO.getAdminAll();
+	}
+	
+	public UserMessage selectByUserId(int userid){
+		return userMessageDAO.selectByUserId(userid);
+	}
+	
 	public Map<String,Object> deleteAddressById(int id){
 		Map<String, Object> map = new HashMap<String, Object>();
 		CommonlyAddress commonlyAddress = commonlyAddressDAO.selectById(id);
@@ -174,4 +188,7 @@ public class UserService {
 		map.put("msg", "删除失败");
 		return map;
 	}
+	
+	
+	
 }

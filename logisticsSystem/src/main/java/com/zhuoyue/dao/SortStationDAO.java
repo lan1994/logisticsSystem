@@ -26,9 +26,10 @@ public interface SortStationDAO {
 	
 	@Select({"select ",SELECT_FIELDS," from ",TABLE_NAME," where id=#{id}"})
 	SortStation selectById(int id);
-	
+	@Select({"select ",SELECT_FIELDS," from ",TABLE_NAME," where stationid=#{stationid}"})
+	SortStation selectStationByStationId(String stationid);
 	@Select({"select ",SELECT_FIELDS," from ",TABLE_NAME," where rank=#{rank}"})
-	SortStation selectByRank(int rank);
+	List<SortStation> selectByRank(int rank);
 	
 	@Select({"select ",SELECT_FIELDS," from ",TABLE_NAME," where rank=#{rank} and city=#{city}"})
 	SortStation selectByRankAndCity(@Param("rank")int rank,@Param("city") int city);
@@ -39,8 +40,8 @@ public interface SortStationDAO {
 	@Delete({"delete from ",TABLE_NAME,"where id=#{id}"})
 	void DelStation(int id);
 	
-	@Update({"update ",TABLE_NAME," set stationid = #{stationname},stationname = #{stationname},adminid = #{adminid},manager = #{manager},"
-			+ "tel = #{tel},mobile = #{mobile},address = #{address},city = #{city},area = #{area} where id=#{id}"})
+	@Update({"update ",TABLE_NAME," set stationid = #{stationId},stationname = #{stationName},adminid = #{adminId},manager = #{manager},"
+			+ "tel = #{tel},mobile = #{mobile},address = #{address},province = #{province},city = #{city},area = #{area} where id=#{id}"})
 	void updateStation(SortStation station);
 	
 	@Select({"select ",SELECT_FIELDS," from ",TABLE_NAME})
