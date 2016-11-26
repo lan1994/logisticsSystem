@@ -15,7 +15,9 @@ import com.zhuoyue.model.Area;
 import com.zhuoyue.model.City;
 import com.zhuoyue.model.Province;
 import com.zhuoyue.model.SortStation;
+import com.zhuoyue.model.UserMessage;
 import com.zhuoyue.service.AreaService;
+import com.zhuoyue.service.UserService;
 import com.zhuoyue.util.JsonUtil;
 /*
  * @author 兰心序
@@ -25,8 +27,9 @@ public class AreaController {
 	@Autowired
 	AreaService areaService;
 	@Autowired
+	UserService userService;
+	@Autowired
 	SortStationDAO sortStationDAO;
-	
 	@RequestMapping("/getProvince")
 	@ResponseBody
 	public String getProvince() {
@@ -90,6 +93,24 @@ public class AreaController {
 			Map<String, Object> map = new HashMap<String, Object>();
 			map.put("id", sortStation.getId());
 			map.put("name", sortStation.getStationName());
+			ls.add(map);
+		}
+		   return JsonUtil.getJSONString(1, ls);
+	}
+	
+	@RequestMapping("/getAdmin")
+	@ResponseBody
+	public String getAdmin(@RequestParam("uright") int uright,@RequestParam("cityCode") int cityCode) {
+		System.out.println("执行getAdmin"+cityCode);
+		List<UserMessage> list = userService.getAdminInfo(uright, cityCode);
+		if (list == null) {
+			return JsonUtil.getJSONString(0);
+		}
+		List<Map<String, Object>> ls = new ArrayList<Map<String, Object>>();
+		for (UserMessage usermessage : list) {
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("userid", usermessage.getUserid());
+			map.put("name", usermessage.getName());
 			ls.add(map);
 		}
 		   return JsonUtil.getJSONString(1, ls);

@@ -34,6 +34,18 @@ public class AreaService {
 		return provinceDAO.selectAll();
 	}
 	
+	public Province getProvinceByCode(int code){
+		return provinceDAO.selectById(code);
+	}
+	
+	public City getCityByCode(int code){
+		return cityDAO.selectById(code);
+	}
+	
+	public Area getAreaByCode(int code){
+		return areaDAO.selectById(code);
+	}
+	
 	public Area selectAreaById(int id){
 		return areaDAO.selectById(id);
 	}
@@ -45,6 +57,7 @@ public class AreaService {
 	public City selectCityById(int id){
 		return cityDAO.selectById(id);
 	}
+	
 	public Area selectAreaByCode(int code){
 		return areaDAO.selectByCode(code);
 	}
@@ -56,4 +69,6 @@ public class AreaService {
 	public City selectCityByCode(int code){
 		return cityDAO.selectByCode(code);
 	}
+	
+	
 }

@@ -18,6 +18,7 @@ import com.zhuoyue.model.HostHolder;
 import com.zhuoyue.model.LoginTicket;
 import com.zhuoyue.model.User;
 import com.zhuoyue.model.UserMessage;
+import com.zhuoyue.model.ViewAdminInfo;
 import com.zhuoyue.util.LogisticsSystemUtil;
 /*
  * @author 兰心序
@@ -38,26 +39,6 @@ public class UserService {
 	
 	@Autowired
 	HostHolder hostHolder;
-	public int selectAddressCountByUserId(int userId){
-		return commonlyAddressDAO.selectAddressCountByUserId(userId);
-	}
-	
-	public void uptateAddress(CommonlyAddress commonlyAddress){
-		commonlyAddressDAO.updateAddress(commonlyAddress);
-	}
-	
-	public int addAddress(CommonlyAddress commonlyAddress){
-		return commonlyAddressDAO.addAddress(commonlyAddress);
-	}
-	
-	public List<CommonlyAddress> selectByUserId(int userId,int offset,int limit){
-		return commonlyAddressDAO.selectByUserId(userId, offset, limit);
-	}
-	
-	public CommonlyAddress selectAddressById(int id){
-		return commonlyAddressDAO.selectById(id);
-	}
-	
 	public User selectByName(String username){
 		return userDAO.selectByName(username);
 	}
@@ -117,8 +98,37 @@ public class UserService {
 		map.put("ticket", ticket);
 		return map;
 	}
-	
-	
+	/*
+	 * 注册管理员权限
+	 */
+	public Map<String, Object> regAdmin(int uright,String username,String password){
+		Map<String, Object> map = new HashMap<String,Object>();
+		if(uright==0){
+			map.put("msg", "请选择管理员级别");
+	        return map;
+		}
+		if (StringUtils.isBlank(username)) {
+            map.put("msg", "用户名不能为空");
+            return map;
+        }
+        if (StringUtils.isBlank(password)) {
+            map.put("msg", "密码不能为空");
+            return map;
+        }
+		User admin = userDAO.selectByName(username);
+		if(admin!=null){
+			map.put("msg", "用户名已存在");
+			return map;
+		}
+		admin = new User();
+		admin.setUsername(username);
+		admin.setSalt(UUID.randomUUID().toString().substring(0, 5));
+		admin.setPassword(LogisticsSystemUtil.MD5(password+admin.getSalt()));
+		admin.setUright(uright);
+		userDAO.addUser(admin);
+		map.put("success", "管理员添加成功！");
+		return map;
+	}
 	public void updateTicketStatus(String ticket,int status){
 		loginTicketDAO.updateStatus(ticket, status);
 	}
@@ -127,14 +137,9 @@ public class UserService {
 		return userMessageDAO.selectByUserId(userid);
 	}
 	
-	public void UpdateUserMessage(UserMessage userMessage){
-		int flag = userMessageDAO.isExist(userMessage.getUserid());
-		if(flag>0){
+	/*public void UpdateUserMessage(UserMessage userMessage){
 		userMessageDAO.updateUserMessage(userMessage);
-		}else{
-			userMessageDAO.addUserMessage(userMessage);
-		}
-	}
+	}*/
 	
 	public String addTicket(int userid){
 		LoginTicket ticket = new LoginTicket();
@@ -147,6 +152,20 @@ public class UserService {
 		loginTicketDAO.addTicket(ticket);
 		return ticket.getTicket();
 	}
+	
+	public List<UserMessage> getAdminInfo(int uright,int cityCode){		
+		return userMessageDAO.getAdminInfo(uright,cityCode);		
+	}
+	
+	public UserMessage selectByUserId(int userid){
+		return userMessageDAO.selectByUserId(userid);
+	}
+	
+	//获取管理员信息
+	public List<ViewAdminInfo> getAdminAll(){
+		return userMessageDAO.getAdminAll();
+	}
+	
 	
 	public Map<String,Object> deleteAddressById(int id){
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -166,4 +185,34 @@ public class UserService {
 		map.put("msg", "删除失败");
 		return map;
 	}
+	public void UpdateUserMessage(UserMessage userMessage){
+		int flag = userMessageDAO.isExist(userMessage.getUserid());
+		if(flag>0){
+		userMessageDAO.updateUserMessage(userMessage);
+		}else{
+			userMessageDAO.addUserMessage(userMessage);
+		}
+	}
+	
+	
+	public int selectAddressCountByUserId(int userId){
+		return commonlyAddressDAO.selectAddressCountByUserId(userId);
+	}
+	
+	public void uptateAddress(CommonlyAddress commonlyAddress){
+		commonlyAddressDAO.updateAddress(commonlyAddress);
+	}
+	
+	public int addAddress(CommonlyAddress commonlyAddress){
+		return commonlyAddressDAO.addAddress(commonlyAddress);
+	}
+	
+	public List<CommonlyAddress> selectByUserId(int userId,int offset,int limit){
+		return commonlyAddressDAO.selectByUserId(userId, offset, limit);
+	}
+	
+	public CommonlyAddress selectAddressById(int id){
+		return commonlyAddressDAO.selectById(id);
+	}
+	
 }
