@@ -124,6 +124,34 @@ public class UserService {
 		return map;
 	}
 	
+	public Map<String, Object> regAdmin(int uright,String username,String password){
+		Map<String, Object> map = new HashMap<String,Object>();
+		if(uright==0){
+			map.put("msg", "请选择管理员级别");
+	        return map;
+		}
+		if (StringUtils.isBlank(username)) {
+            map.put("msg", "用户名不能为空");
+            return map;
+        }
+        if (StringUtils.isBlank(password)) {
+            map.put("msg", "密码不能为空");
+            return map;
+        }
+		User admin = userDAO.selectByName(username);
+		if(admin!=null){
+			map.put("msg", "用户名已存在");
+			return map;
+		}
+		admin = new User();
+		admin.setUsername(username);
+		admin.setSalt(UUID.randomUUID().toString().substring(0, 5));
+		admin.setPassword(LogisticsSystemUtil.MD5(password+admin.getSalt()));
+		admin.setUright(uright);
+		userDAO.addUser(admin);
+		map.put("success", "管理员添加成功！");
+		return map;
+	}
 	
 	public void updateTicketStatus(String ticket,int status){
 		loginTicketDAO.updateStatus(ticket, status);

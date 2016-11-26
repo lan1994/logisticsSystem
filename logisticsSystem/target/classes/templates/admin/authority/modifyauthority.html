@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>一级管理员权限管理</title>
+#parse("/shared/manager_headtitle.html")
+<link rel="stylesheet" type="text/css" href="../../styles/manager/tabcss.css"/>
+<body>
+	<!-- <jsp:include page="../shared/manager_head.jsp"></jsp:include> -->
+	#parse("/shared/manager_head.html")
+	<div class="manager_main">
+		<div class="content">
+			<div class="leftbox">
+				<!-- Begin of  #contentlist -->
+					<div class="pageIntro">
+					<div class="contentBoxTop">
+						<h3>修改权限</h3>
+					</div>
+					<div class="innerContent">
+                        <div id="menu">
+                        <!--tag标题-->
+                           <ul id="nav">
+                             <li><a href="#" class="selected">注册管理员权限</a></li>
+                             <li><a href="#" class="">提升管理员权限</a></li>
+                           </ul>
+                           <!--二级菜单-->
+                            <div id="menu_con">
+                              <div class="tag" style="display:block">
+                                <form action="/admin/regadmin" method="post">
+						          <table class="sysTable">							
+							        <tr>
+								     <td class="sTitle"><span class="important">*</span>设置管理员等级:</td>
+								     <td colspan="3">
+								       <select id="userlist" name="uright">
+								         <option value="0">请选择</option>
+									     <option value="2">二级管理员</option>
+									     <option value="3">三级管理员</option>
+								       </select>
+                                    </td>
+                                    <td style="color: blue;font-weight: bold;">提示信息：</td>
+							       </tr>
+							       <tr>
+								    <td class="sTitle"><span class="important">*</span>管理员账号:</td>
+								    <td colspan="3"><input type="text" name="adminname" /></td>
+								    <td style="color: red;font-weight: bold;">$!{msg}</td>
+							       </tr>
+							       <tr>
+								    <td class="sTitle"><span class="important">*</span>管理员密码:</td>
+								    <td colspan="3"><input type="password" name="adminpassword"  /></td>								    
+							       </tr>
+							       <tr class="sSubmit">
+								    <td Colspan="2"><input type="submit" class="from_sub"
+									value="注册" /></td>
+							       </tr>
+						     </table>
+                            </form>                            
+                           </div> 
+                           
+                           <div class="tag" style="display:none">
+						<table class="sTable">
+							<tr>
+								<th><input type="checkbox" value="全选" onclick="ChooseAll()" />
+								</th>
+								<th>管理员姓名</th>
+								<th>性别</th>
+								<th>电话</th>
+								<th>级别</th>
+								<th>地区</th>
+								<th>权限修改</th>
+							</tr>		
+							#if($adminlist)
+							#foreach($admininfo in $adminlist) 							
+							<tr class="oddRow">
+									<td class="check_list"><input type="checkbox" id="list"
+										name="list" /></td>
+									<td class="list_time"><a
+										href="#"
+										title="$!admininfo.name">$!admininfo.name</a></td>
+									<td class="list_time">	
+									 	#if($!admininfo.sex==0)
+									 	女
+									 	#end
+									 	#if($!admininfo.sex==1)
+									 	男
+									 	#end				
+									</td>
+									<td class="list_time">$!admininfo.mobile</td>
+									<td class="list_time">
+									#if($!admininfo.uright==2)
+									 	二级管理员
+									#end
+								    #if($!admininfo.uright==3)
+									 	三级管理员
+									#end
+									</td>
+									<td class="list_title">
+								    $!admininfo.provincename、$!admininfo.cityname、$!admininfo.areaname
+									</td>
+									<td class="editItem">
+										<ul class="editlist">
+											<li class="iconEdit"><a href="/modifyauthority">修改权限</a></li>
+											<li class="iconDel"><a onclick="return confirm('您确认要删除当前数据吗？')" href="/deladmin">删除</a></li>
+										</ul>
+									</td>
+								</tr>   
+								#end  													
+							#else 
+							<tr class="oddRow">					
+							<td colspan="7" style="text-align: center;"><font style="color: red;">$!info</font></td>	
+							</tr>
+							#end                      　　　                                                   								
+						</table>                                                                     
+                           </div> 
+                         </div>
+                       </div>
+                       <script type="text/javascript" src="../../scripts/tabjs.js"></script>
+						<!--tag标题结束-->
+						<!-- End of  #contentlist -->
+					</div>
+				</div>
+
+			</div>
+			<!-- <jsp:include page="../shared/manager_siderbar.jsp"></jsp:include> -->
+			#parse("/shared/manager_siderbar.html")
+		</div>
+	</div>
+	<!-- <jsp:include page="../shared/manager_footer.jsp"></jsp:include> -->
+	 #parse("/shared/manager_footer.html")
+</body>
+</html>

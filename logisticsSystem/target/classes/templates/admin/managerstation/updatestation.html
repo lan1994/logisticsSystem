@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>更新二级分拣中心</title>
+<!-- <jsp:include page="../shared/manager_headtitle.jsp"></jsp:include> -->
+#parse("/shared/manager_headtitle.html")
+<link rel="stylesheet" type="text/css" href="../../styles/manager/managestation.css"/>
+<script type="text/javascript" src="../../scripts/js/jquery.min.js"></script>
+<script type="text/javascript" src="../../scripts/ajax/asynchronous .js"></script>
+<body>
+	<!-- <jsp:include page="../shared/manager_head.jsp"></jsp:include> -->
+	#parse("/shared/manager_head.html")
+	                     #if($msg)
+                         <script type="text/javascript">
+                          alert('$!msg');
+                         </script>
+                         #end   
+	<div class="manager_main">
+		<div class="content">
+			<div class="leftbox">
+				<!-- Begin of  #contentlist -->
+				<div class="contentBox">
+				    <div class="contentBoxTop">
+						<h3>更新二级分拣中心</h3>
+					</div>
+					<div class="innerContent">
+					<form action="/admin/saveupdatestation" method="post">
+						<table class="sysTable">
+							<tr>
+								<td class="sTitle"><span class="important">*</span>地区代码:</td>
+								<td colspan="3">
+								<input type="text" name="province" value="$!station.province" readonly="readonly" style="width: 80px"/>
+								<input type="text" name="city" value="$!station.city" readonly="readonly" style="width: 80px"/>
+								#if($!station.area==0)
+								<input type="hidden" name="area" value="$!station.area" />
+								#else
+								<input type="text" name="area" value="$!station.area" readonly="readonly" style="width: 80px" />
+								#end
+								<input type="hidden" name="id" value="$!station.id" />
+								</td>
+							</tr>
+							<tr>
+								<td class="sTitle"><span class="important">*</span>二级分拣中心名称:</td>
+								<td colspan="3"><input type="text" name="stationName" value="$!station.stationName" style="width: 400px;" /></td>
+							</tr>
+							<tr>
+								<td class="sTitle"><span class="important">*</span>设置二级管理员:</td>
+								<td colspan="3">
+								     <select id="adminlist" name="adminId">
+								     #if($admin)							     
+								     <option value="$!admin.userid">$!admin.name</option>
+								     #else
+								     <option value="0">请选择</option>
+								     #end
+								     #foreach($userinfo in $userlist)
+								     <option value="$!userinfo.userid">$!userinfo.name</option>									     							 
+								     #end
+								     </select>								     								
+								     <input type="hidden" name="rank" value="$!station.rank"/>
+								     </td>
+							</tr>
+							<tr>
+								<td class="sTitle"><span class="important">*</span>站点标识（12位）:</td>
+								<td><input type="text" name="stationId" value="$!station.stationId" readonly="readonly"/></td>
+								<td class="sTitle"><span class="important">*</span>负责人:</td>
+								<td><input type="text" name="manager" value="$!station.manager"/></td>
+							</tr>
+							<tr>
+								<td class="sTitle">联系方式1-座机:</td>
+								<td colspan="3"><input type="text" name="tel" value="$!station.tel"/></td>
+							</tr>
+							<tr>
+								<td class="sTitle"><span class="important">*</span>联系方式2-手机:</td>
+								<td colspan="3"><input type="text" name="mobile" value="$!station.mobile" /></td>
+							</tr>
+							<tr>
+								<td class="sTitle"><span class="important">*</span>地址:</td>
+								<td colspan="3"><input type="text" style="width: 490px;" name="address" value="$!station.address"/></td>
+							</tr>
+							<tr class="sSubmit">
+								<td Colspan="4"><input type="submit" class="from_sub"
+									value="更新" /></td>
+							</tr>
+						</table>
+                        </form>                         
+						<!-- End of  #contentlist -->
+					</div>
+					</div>
+			</div>
+			<!-- <jsp:include page="../shared/manager_siderbar.jsp"></jsp:include> -->
+			#parse("/shared/manager_siderbar.html")
+		</div>
+	</div>
+	<!-- <jsp:include page="../shared/manager_footer.jsp"></jsp:include> -->
+	 #parse("/shared/manager_footer.html")
+</body>
+</html>

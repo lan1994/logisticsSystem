@@ -1,0 +1,241 @@
+
+<head>
+<meta charset="UTF-8">
+<title></title>
+</head>
+<style>
+body {
+	font-size: 12px;
+	font: 12px/150% Arial, Verdana, "\5b8b\4f53";
+	color: #000000;
+	line-height: 2.0;
+	margin: 0 auto;
+	background: #fff;
+}
+
+.clearfix:after {
+	content: "clearfix";
+	display: block;
+	visibility: hidden;
+	height: 0;
+	clear: both;
+	overflow: hidden;
+}
+ 
+.maincontent{
+	height: auto;
+}
+ 
+#main {
+	float: left;
+	width: 99.9%;
+	margin-left: 120px;
+	overflow: hidden;
+}
+
+a {
+	text-decoration: none;
+	color: #3C3C3C;
+}
+
+.mod-comm {
+	padding: 10px 20px 20px;
+}
+
+.mod-comm .mt h3 {
+	padding-bottom: 0;
+	color: #e4393c;
+	border-bottom: 2px solid #e4393c;
+	font-weight: 700;
+	cursor: pointer;
+	text-decoration: none;
+	width: 70px;
+}
+
+.mod-comm .mc {
+	line-height: 20px;
+}
+
+thead {
+	display: table-header-group;
+	vertical-align: middle;
+	border-color: inherit;
+}
+
+.order-tb thead th {
+	height: 32px;
+	line-height: 32px;
+	text-align: center;
+	background: #f5f5f5;
+	color: #666;
+	font-weight: 400;
+}
+
+.order-tb .tr-th td {
+	border-bottom-color: #f5f5f5;
+}
+.order-tb tbody td {
+	border: 1px solid #e5e5e5;
+}
+
+table {
+	display: table;
+	border-collapse: collapse;
+	border-spacing: 2px;
+	border-color: grey;
+}
+
+.order-tb {
+	width: 70%;
+}
+
+.order-tb .sep-row {
+	height: 20px;
+}
+
+tr {
+	display: table-row;
+	vertical-align: inherit;
+	border-color: inherit;
+}
+
+.order-tb .tr-th {
+	background: #f5f5f5;
+	height: 31px;
+	line-height: 31px;
+	color: #3C3C3C;
+	overflow: hidden;
+}
+
+.order-tb .tr-bd {
+	text-align: center;
+	vertical-align: top;
+}
+
+.order-tb .goods-item {
+	display: inline-block;
+	display: block;
+	float: left;
+	width: 255px;
+	margin-right: 10px;
+}
+#finishorder{
+  margin: auto;
+}
+
+.order-tb .goods-number {
+	width: 70px;
+}
+
+.order-tb .goods-number {
+	float: left;
+	width: 40px;
+	text-align: left;
+	color: #aaa;
+	font-family: verdana;
+}
+
+.order-tb .tr-bd td {
+	padding: 14px 0;
+}
+
+.order-tb .status {
+	position: relative;
+	color: #333;
+	line-height: 22px;
+}
+
+tbody {
+	display: table-row-group;
+	vertical-align: middle;
+	border-color: inherit;
+}
+
+.pc {
+	color: #0000;
+}
+</style>
+#parse("/customer/shared/customer_top.html")
+<div class="maincontent">
+	<div id="main">
+		<div id="chunjie" class="mb10"></div>
+		<div class="mod-main mod-comm mod-order" id="order01">
+			<div class="mt">
+				<h3>我的订单</h3>
+				<div class="extra-r"></div>
+			</div>
+		</div>
+		<div class="mod-main mod-comm lefta-box" id="order02">
+			<div class="mc">
+				<table class="td-void order-tb">
+					<tr>
+						<th>
+							<div class="ordertime-cont"></div>
+							<div class="order-detail-txt ac">订单详情</div>
+						</th>
+						<th>收件人</th>
+						<th>状态</th>
+						<th>操作</th>
+					</tr>
+					#foreach($info in $lists)
+					<form action="" method="post">
+						<tr class="tr-th">
+							<td colspan="5"><span class="gap"></span> <span
+								class="dealtime" title="2016-xx-xx xx:xx:xx">$info.orderSchedule
+							</span> <input type="hidden" id="datasubmit-44147770761"
+								value="2016-11-09 20:09:39"> <span class="number">订单号：<a
+									name="orderIdLinks" id="001" target="_blank" href="#">$info.orderNumber</a>
+							</span>
+								<div class="tr-operate">
+									<a href="#" class="order-del" _orderid="44147770761" title="删除"
+										style="display: none;"></a>
+								</div></td>
+						</tr>
+						<tr class="tr-bd" id="track44147770761" oty="0,1,70">
+							<td>
+								<div class="goods-item p-1142355">
+									<div class="p-msg">
+										<div class="p-name">
+											<span><strong>收件地址：</strong></span><a href="#" class="a-link"
+												target="_blank" title="收货地址">$info.sendaddress</a>
+										</div>
+										<div class="p-name">
+											<span><strong>寄件地址：</strong></span><a href="#" class="a-link"
+												target="_blank" title="收货地址">$info.readdress </a>
+										</div>
+									</div>
+								</div>
+								<div class="clearfix"></div>
+							</td>
+							<td rowspan="tr-bd">
+								<div class="consignee tooltip">
+									<div class="prompt-01 prompt-02">
+										<div class="pc">$info.rename</div>
+										<div class="p-arrow p-arrow-left"></div>
+									</div>
+								</div>
+							</td>
+							<td rowspan="1">
+								<div class="status">
+									<span class="order-status ftx-03">$info.state </span>
+								</div>
+							</td>
+							<td rowspan="1" id="009">
+								<div class="operate">
+									<div id="pay-button-44147770761" _baina="0"></div>
+									<input name="bt" type="button"  onclick="location.href='/customer/host/finishorder/$info.orderNumber'"
+									  value="$info.operation" id="finishorder"  style="display: $info.display"  /> <a class="" target="_blank" href="#"></a>
+
+								</div>
+							</td>
+						</tr>
+					</form>
+					#end
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+

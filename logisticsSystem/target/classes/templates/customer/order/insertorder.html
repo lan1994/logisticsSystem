@@ -1,0 +1,396 @@
+#parse("/customer/shared/customer_top.html")
+<script type="text/javascript" src="/scripts/js/jquery-1.6.2.js"></script>
+<script type="text/javascript" src="/scripts/user/address.js"></script>
+	<style>
+			body {
+				font-size: 12px;
+				font-family: "Microsoft Yahei", Arial, Helvetica, sans-serif, "黑体";
+				color: #666666;
+				line-height: 2.0;
+				margin: 0 auto;
+				height:auto;
+			} 
+			
+		 .clearfix:after {
+				content: "clearfix";
+				display: block;
+				visibility: hidden;
+				height: 0;
+				clear: both;
+				overflow: hidden;
+			} 
+			#addresspage_01{
+				margin: 0 215px;		
+			}
+			.mt {
+				padding: 10px 0;
+			}
+			
+			a.e-btn:link,
+			a.e-btn:visited {
+				border: 1px solid #e6e6e6;
+				color: #333;
+				text-decoration: none;
+			}
+			
+			a.add-btn {
+				display: inline-block;
+				vertical-align: middle;
+				font-weight: 700;
+				padding: 0 14px;
+				height: 28px;
+				line-height: 28px;
+				font-size: 14px;
+				margin: 0 10px 0 0;
+				background-color: #DEDEDE;
+				/*background-image: linear-gradient(to bottom,#f5fbef 0,#eaf6e2 100%);*/
+			}
+			
+			.contacts_1 {
+				border: 2px solid #e6e6e6;
+				margin: 0 0 10px;
+				height: 140px;
+				width: 300px;
+				z-index: 1;
+			}
+			
+			.contacts_name {
+				width: 825PX;
+				padding-left: 10px;
+				line-height: 35px;
+				height: 35px;
+				position: relative;
+				display: inline-block;
+				display: block;
+				overflow: visible;
+			}
+			
+			.contacts_name h3 {
+				float: left;
+				color: #666;
+				font-family: "microsoft yahei";
+				margin: 0;
+				padding: 0;
+			}
+			
+			.contacts_name .extra {
+				float: right;
+				margin: 0 10px 0 0;
+				padding: 0;
+			}
+			
+			.contacts_INFO {
+				margin: 0;
+				padding: 10px;
+				line-height: 22px;
+				width: 788px;
+			}
+			
+			.f1 {
+				float: left;
+			}
+			
+			.contacts_1 .contacts_INFO .new-items {
+				position: relative;
+				width: 788px;
+			}
+			
+			.contacts_1 .contacts_INFO .item-lcol {
+				width: 360px;
+				float: left;
+			}
+			
+			.item1 span {
+				float: left;
+				width: 70px;
+				color: #999;
+				text-align: right;
+			}
+		.thickbox {
+			/*left: 109.5px; top: 187px; width: 762px; height: 450px;*/
+			position: fixed;
+			z-index: 10000002;
+			overflow: hidden;
+			padding: 0;
+			border: 4px solid rgba(0, 0, 0, .1);
+			z-index: 3;
+			border-radius: 5px;
+			-moz-border-radius: 5px;
+			-webkit-border-radius: 5px;
+		}
+		
+		.thicktitle {
+			height: 27px;
+			padding: 0 10px;
+			border: solid #C4C4C4;
+			border-width: 1px 1px 0;
+			background: #F3F3F3;
+			line-height: 27px;
+			font-family: arial, "\5b8b\4f53";
+			font-size: 14px;
+			font-weight: 700;
+			color: #333;
+		}
+		
+		.thickcon {
+			overflow: auto;
+			background: #fff;
+			border: solid #C4C4C4;
+			border-width: 1px;
+			padding: 10px;
+		}
+		
+		#edit-cont {
+			padding: 20px;
+		}
+		
+		#edit-cont .item {
+			margin: 0 0 5px;
+			line-height: 22px;
+		}
+		
+		#edit-cont .item .label {
+			float: none;
+			display: block;
+			vertical-align: middle;
+			color: #999;
+			text-align: left;
+		}
+		
+		.form em {
+			color: #e4393c;
+		}
+		
+		#edit-cont .item .text {
+			height: 18px;
+			line-height: 18px;
+			padding: 6px;
+			width: 220px;
+			margin-right: 5px;
+			vertical-align: middle;
+		}
+		
+		#edit-cont .item .text1 {
+			width: 484px;
+		}
+		
+		#edit-cont .item .sele {
+			width: auto;
+			margin-right: 10px;
+		}
+		#edit-cont .item .f1 .extra-span{
+			margin: 26px 5px 0;
+			display: block;
+		}
+		.form .sele,
+		.form .selt {
+			line-height: 18px;
+			border: 1px solid #ccc;
+			padding: 5px;
+			float: none;
+			font-family: "Microsoft YaHei";
+			font-size: 12px;
+		}
+		
+		#edit-cont .btns {
+			margin: 20px 0 0;
+			background-image: linear-gradient(to bottom, #F7F7F7 0, #F3F2F2 100%);
+			border-radius: 2px;
+			display: inline-block;
+			border: 1px solid #ddd;
+		}
+		
+		a.save-btn {
+			height: 28px;
+			line-height: 28px;
+			padding: 0 14px;
+			font-size: 14px;
+		}
+		
+		.btn-9 {
+			background-color: #F7F7F7;
+		}
+		
+		.thickclose:link,
+		.thickclose:visited {
+			display: block;
+			position: absolute;
+			z-index: 100000;
+			top: 7px;
+			right: 12px;
+			overflow: hidden;
+			width: 15px;
+			height: 15px;
+			background: url(/images/customer_img/XXX.gif) no-repeat 0 -18px;
+			font-size: 0;
+			line-height: 100px;
+		}
+		
+		a.e-btn:link,
+		a.e-btn:visited {
+			color: #333;
+			text-decoration: none;
+		}
+		
+		#addressbg{
+			width: 100%;
+			background-color: #f5f5f5;
+			z-index: 2;
+			position:fixed;
+			left:0px;
+			top:0px;
+			display: none;
+			height: 100%;
+			opacity: 0.6;
+			filter:alpha(opacity=60);
+		}
+		.hidden{
+			display:none;
+		}
+		 .maincontent {
+			position: relative;
+		}
+		 #success {
+			position: absolute;
+			left: 400px;
+			top: 160px;
+		}
+		 #error {
+			position: absolute;
+			left: 400px;
+			top: 160px;
+		}
+</style>
+ <div class="maincontent"> 
+ 		<div id="addresspage_01">
+		<div id="addressList" class="mod-main " style="z-index: 1;">
+			<div class="mt">
+				<a class="e-btn add-btn btn-5" href="/customer/host/addresspage">新增收货地址</a>
+			</div>
+					<!--常用联系人 框体-->
+	 		<form action="/customer/host/insertorder" method="post" id="orderform">
+   <!--//发件人-->
+	<div  style="width: 300px; height: auto;  float: left;">
+		<div > <h2>发件人</h2>   </div>
+		<div class="clearfix"></div>
+		<div id="sendcommonlyaddresslist" style="width: 300px;height:auto;  float: left;  ">
+						 #foreach($vo in $vos)
+						<div id="commonlyaddressbox" style="float: left; display: $display;">
+							<div class="contacts_1 ">
+								<div class="contacts_name">
+									<h3><input type="radio" name="sendcommonlyaddressid" value="$!vo.id" onclick="commonlyaddress()" >$!vo.name</h3>
+								</div>
+								<div class="contacts_INFO">
+									<div class="items new-items">
+										<div class="item-lcol">
+											<div class="item1">
+												<span class="label">姓名：</span>
+												<div class="fl" style="width: 300px;height: 22px;">
+													$!vo.name
+												</div>
+												<div class="clearfix"></div>
+											</div>
+											<div class="item1">
+												<span class="label">所在地区：</span>
+												<div class="fl" style="width: 300px;height: 22px;">
+													<div class="f1">$!vo.province</div>
+													<div class="f1">$!vo.city</div>
+													<div class="f1">$!vo.area</div>
+												</div>
+												<div class="clearfix"></div>
+											</div>
+											<div class="item1">
+												<span class="label">地址：</span>
+												<div class="fl" style="width: 300px;height: 22px;">
+													$!vo.detaiaddress
+												</div>
+												<div class="clearfix"></div>
+											</div>
+											<div class="item1">
+												<span class="label">手机：</span>
+												<div class="fl" style="width: 300px;height: 22px;">
+													$!vo.mobile
+												</div>
+												<div class="clearfix"></div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						   #end
+					</div>
+		
+	</div>
+
+	<!--收件人-->
+	<div style="width: 300px; height: 300px;  float: left;">
+			<div > <h2>收件人</h2>   </div>
+		<div class="clearfix"></div>
+		<div id="receivecommonlyaddresslist" style="width: 300px;height:auto;  float: left;  ">
+						 #foreach($vo in $vos)
+						<div id="commonlyaddressbox" style="float: left; display: $display;">
+							<div class="contacts_1 ">
+								<div class="contacts_name">
+									<h3><input type="radio" name="receivecommonlyaddressid" value="$!vo.id" onclick="commonlyaddress()" >$!vo.name</h3>
+								</div>
+								<div class="contacts_INFO">
+									<div class="items new-items">
+										<div class="item-lcol">
+											<div class="item1">
+												<span class="label">姓名：</span>
+												<div class="fl" style="width: 300px;height: 22px;">
+													$!vo.name
+												</div>
+												<div class="clearfix"></div>
+											</div>
+											<div class="item1">
+												<span class="label">所在地区：</span>
+												<div class="fl" style="width: 300px;height: 22px;">
+													<div class="f1">$!vo.province</div>
+													<div class="f1">$!vo.city</div>
+													<div class="f1">$!vo.area</div>
+												</div>
+												<div class="clearfix"></div>
+											</div>
+											<div class="item1">
+												<span class="label">地址：</span>
+												<div class="fl" style="width: 300px;height: 22px;">
+													$!vo.detaiaddress
+												</div>
+												<div class="clearfix"></div>
+											</div>
+											<div class="item1">
+												<span class="label">手机：</span>
+												<div class="fl" style="width: 300px;height: 22px;">
+													$!vo.mobile
+												</div>
+												<div class="clearfix"></div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						   #end
+				</div>
+	</div>
+	<div class="clearfix"></div>
+	<button id="bt" style="width:100px; height:30px;font-size:20px;"  class="e-btn btn-9 save-btn" >确认</button>
+	
+   </form>
+	
+
+		
+		
+		
+		
+		
+		
+		
+		
+
+		</div>
+  </div>
+   </div>
+#parse("/customer/shared/customer_down.html")

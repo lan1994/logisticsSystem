@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>二级分拣站管理</title>
+<!-- <jsp:include page="../shared/manager_headtitle.jsp"></jsp:include> -->
+#parse("/shared/manager_headtitle.html")
+<body>
+	<!-- <jsp:include page="../shared/manager_head.jsp"></jsp:include> -->
+	#parse("/shared/manager_head.html")
+	                      #if($msg)
+                         <script type="text/javascript">
+                          alert('$!msg');
+                         </script>
+                         #end 
+	<div class="manager_main">
+		<div class="content">
+			<div class="leftbox">
+				<!-- Begin of  #contentlist -->
+				<div class="contentBox">
+					<div class="contentBoxTop">
+						<h3>二级分拣站管理</h3>
+					</div>
+					<div class="innerContent">
+						<table class="sTable">
+							<tr>
+								<th><input type="checkbox" value="全选" onclick="ChooseAll()" />
+								</th>
+								<th>机构名称</th>
+								<th>管理员</th>
+								<th>负责人</th>
+								<th>电话/手机</th>
+							</tr>
+							    #foreach( $stationinfo in $stationlist)                                   　　　                                                   
+								<tr class="oddRow">
+									<td class="check_list"><input type="checkbox" id="list"
+										name="list" /></td>
+									<td class="list_title"><a
+										href="#"
+										title="$!stationinfo.stationName">$!stationinfo.stationName</a></td>
+									<td class="list_time">	
+									 #foreach($userinfo in $userlist)   				
+									         #if($!stationinfo.adminId==$!userinfo.userid)
+									         $!userinfo.name
+									         #end							          
+									         #end
+									         #if($!stationinfo.adminId==0) 
+									         <font style="color: red">$!tip</font>									 
+									         #end 							
+									</td>
+									<td class="list_time">$!stationinfo.manager</td>
+									<td class="list_time">$!stationinfo.mobile</td>
+									<td class="editItem">
+										<ul class="editlist">
+											<li class="iconEdit"><a href="/admin/updatestation?sid=$!stationinfo.id&&id=4">编辑</a></li>
+											<li class="iconDel"><a onclick="return confirm('您确认要删除当前数据吗？')" href="/admin/delstation?sid=$!stationinfo.id">删除</a></li>
+										</ul>
+									</td>
+								</tr>
+								#end 
+						</table>
+						<!-- 分页开始 -->
+						
+                        <!-- 分页结束 -->
+					</div>
+				</div>
+			</div>
+			<!-- <jsp:include page="../shared/manager_siderbar.jsp"></jsp:include> -->
+			#parse("/shared/manager_siderbar.html")
+		</div>
+	</div>
+	<!-- <jsp:include page="../shared/manager_footer.jsp"></jsp:include> -->
+	 #parse("/shared/manager_footer.html")
+</body>
+</html>
