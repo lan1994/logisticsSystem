@@ -1,0 +1,77 @@
+.contentBoxTop
+{
+    background: url(../../images/images/bg_contentBoxTop.jpg) no-repeat;
+    height: 43px;
+    margin-top: 15px;
+}
+
+.contentBoxTop h3
+{
+    color: #f2f2f2;
+    font-size: 1.1em;
+    display: block;
+    float: left;
+    width: 400px;
+    margin: 12px 0 0 12px;
+}
+td
+{
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+.innerContent
+{
+    padding: 12px;
+}
+
+table.sTable {
+width: 701px;
+margin: 0 0 0 -10px;
+border-collapse: collapse;
+}
+
+table.aTable{
+	width: 700px;
+	margin: 0 0 0 -10px;
+}
+
+/*信息维护表格*/
+table.sysTable{
+	width: 700px;
+	margin: 0 0 0 -10px;
+	 
+}
+
+table.sysTable td{
+	font-size: 0.9em;
+	color: #999;
+	margin: 0;
+    padding: 5px 0 5px 0;
+    
+}
+
+table.sysTable .sTitle{
+	text-align: center;
+	width: 150px;
+}
+
+table.sysTable .sSubmit{
+	text-align: center;
+}
+
+table.sysTable .from_sub{
+	width: 120px;
+	height: 35px;
+	background-color: #666666;
+	border: 0;
+	padding: 0;
+	border-radius: 5px;
+	color: #ffffff;
+	font-size: 14px;
+	cursor:pointer;
+}
+.important{
+	color: red;
+}

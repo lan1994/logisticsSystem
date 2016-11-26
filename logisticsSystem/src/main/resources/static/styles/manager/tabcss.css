@@ -1,0 +1,123 @@
+.contentBoxTop
+{
+    background: url(../../images/images/bg_contentBoxTop.jpg) no-repeat;
+    height: 43px;
+    margin-top: 15px;
+}
+
+.contentBoxTop h3
+{
+    color: #f2f2f2;
+    font-size: 1.1em;
+    display: block;
+    float: left;
+    width: 400px;
+    margin: 12px 0 0 12px;
+}
+*{list-style:none;}
+#menu{width:800px; overflow:hidden; margin:10px 30px;border:2px solid #CDCDC1;border-radius:20px}
+#menu #nav {display:block;width:100%;padding:0;margin:0;list-style:none;}
+#menu #nav li {float:left;width:400px;border-bottom:2px solid #CDCDC1;}
+#menu #nav li a {display:block;line-height:27px;text-decoration:none;padding:0 0 0 5px; text-align:center; color:#000000;font-size: 18px;font-weight: bold;}
+#menu_con{ width:800px; border-top:none}
+.tag{ padding:10px; overflow:hidden;}
+.selected{background:#CDCDC1;}
+table.sysTable{
+	width: 500px;
+	margin: 0 0 0 -10px;
+	 
+}
+table.sysTable td{
+	font-size: 1.2em;
+	color: #999;
+	margin: 0;
+    padding: 10px 0 5px 0;
+}
+
+table.sysTable .sTitle{
+	padding-left:40px;
+	width: 150px;
+}
+table.sysTable .from_sub{
+	width: 100px;
+	height: 25px;
+	background-color: #666666;
+	border: 0;
+	padding: 0;
+	margin-left:120px;
+	border-radius: 5px;
+	color: #ffffff;
+	font-size: 14px;
+	cursor:pointer;
+}
+.important{
+	color: red;
+}
+table.sTable {
+width: 800px;
+margin: 0 0 0 -10px;
+border-collapse: collapse;
+margin-left: 5px;
+}
+table.sTable td
+{
+    border-top: 1px solid #dfdfdf;
+    font-size: 0.9em;
+    margin: 0;
+    padding: 5px 0;
+    color: #999;
+}
+
+table.sTable a
+{
+    text-decoration: none;
+    color: #929474;
+    }
+    
+table.sTable a:hover
+{text-decoration: none;
+    color: #000000;
+    }
+    td.editItem
+{
+    width: 200px;
+}
+
+td.editpd
+{
+    width:180px;
+    }
+
+td.editItem ul li
+{
+    float: left;
+    margin-right: 13px;
+    padding-left: 18px;
+    text-align: center;
+}
+
+.editlist
+{
+    margin: 0;
+    padding: 0;
+}
+li
+{
+    display: list-item;
+    text-align: -webkit-match-parent;
+}
+
+.oddRow
+{
+    background: url(/images/images/bg_tableRow.gif) repeat-x 0px 1px;
+}
+
+li.iconEdit
+{
+    background: url(/images/images/icon_edit.gif) no-repeat;
+}
+
+li.iconDel
+{
+    background: url(/images/images/icon_delete.gif) no-repeat 2px 3px;
+}
